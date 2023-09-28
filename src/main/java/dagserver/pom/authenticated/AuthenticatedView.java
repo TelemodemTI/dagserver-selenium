@@ -13,6 +13,7 @@ public class AuthenticatedView {
 	private By logoutBtn = By.xpath("//*[@id=\"wrapper\"]/nav/ul[2]/li[3]/ul/li/a");
 	private By credentialsLink = By.xpath("//*[@id=\"side-menu\"]/li[3]/ul/li/a");
 	private By propsLink = By.xpath("//*[@id=\"side-menu\"]/li[2]/ul/li[1]/a");
+	private By jobsLink = By.xpath("//*[@id=\"side-menu\"]/li[2]/ul/li[2]/a");
 	
 	public AuthenticatedView(WebDriver driver) {
 		this.driver = driver;
@@ -36,5 +37,11 @@ public class AuthenticatedView {
         wait.until(ExpectedConditions.visibilityOfElementLocated(propsLink));
 		driver.findElement(propsLink).click();
 		return new PropertiesView(driver);
+	}
+	public JobsView goToJobs() {
+		WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(jobsLink));
+		driver.findElement(jobsLink).click();
+		return new JobsView(driver);
 	}
 }
