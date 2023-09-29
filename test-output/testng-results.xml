@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-09-28T12:07:05 CLST" name="jobs" finished-at="2023-09-28T12:07:17 CLST" duration-ms="11750">
+  <suite started-at="2023-09-29T13:06:15 CLST" name="jobs" finished-at="2023-09-29T13:06:39 CLST" duration-ms="24579">
     <groups>
     </groups>
-    <test started-at="2023-09-28T12:07:05 CLST" name="systemJobsTest" finished-at="2023-09-28T12:07:17 CLST" duration-ms="11750">
+    <test started-at="2023-09-29T13:06:15 CLST" name="addDesignListenerTest" finished-at="2023-09-29T13:06:39 CLST" duration-ms="24579">
       <class name="dagserver.test.JobsTest">
-        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:dagserver.test.JobsTest@19bb07ed]" started-at="2023-09-28T12:07:05 CLST" name="beforeSuite" finished-at="2023-09-28T12:07:06 CLST" duration-ms="1382" status="PASS">
+        <test-method is-config="true" signature="beforeSuite()[pri:0, instance:dagserver.test.JobsTest@19bb07ed]" started-at="2023-09-29T13:06:15 CLST" name="beforeSuite" finished-at="2023-09-29T13:06:16 CLST" duration-ms="1981" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method signature="systemJobsTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:dagserver.test.JobsTest@19bb07ed]" started-at="2023-09-28T12:07:06 CLST" name="systemJobsTest" finished-at="2023-09-28T12:07:17 CLST" duration-ms="10196" status="PASS">
+        <test-method signature="addDesignListenerTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:dagserver.test.JobsTest@19bb07ed]" started-at="2023-09-29T13:06:17 CLST" name="addDesignListenerTest" finished-at="2023-09-29T13:06:39 CLST" duration-ms="22356" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -28,15 +28,55 @@
                 <![CDATA[dagserver]]>
               </value>
             </param>
+            <param index="3">
+              <value>
+                <![CDATA[testing.jar]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[TEST_DAG]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[group.test]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[onEnd]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[GROUP]]>
+              </value>
+            </param>
+            <param index="8">
+              <value>
+                <![CDATA[main.group]]>
+              </value>
+            </param>
+            <param index="9">
+              <value>
+                <![CDATA[step1]]>
+              </value>
+            </param>
+            <param index="10">
+              <value>
+                <![CDATA[step2]]>
+              </value>
+            </param>
           </params>
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- systemJobsTest -->
-        <test-method is-config="true" signature="close()[pri:0, instance:dagserver.test.JobsTest@19bb07ed]" started-at="2023-09-28T12:07:17 CLST" name="close" finished-at="2023-09-28T12:07:17 CLST" duration-ms="147" status="PASS">
+        </test-method> <!-- addDesignListenerTest -->
+        <test-method is-config="true" signature="close()[pri:0, instance:dagserver.test.JobsTest@19bb07ed]" started-at="2023-09-29T13:06:39 CLST" name="close" finished-at="2023-09-29T13:06:39 CLST" duration-ms="188" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
       </class> <!-- dagserver.test.JobsTest -->
-    </test> <!-- systemJobsTest -->
+    </test> <!-- addDesignListenerTest -->
   </suite> <!-- jobs -->
 </testng-results>

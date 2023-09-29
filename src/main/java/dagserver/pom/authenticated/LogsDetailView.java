@@ -58,7 +58,7 @@ public class LogsDetailView {
 		return found;
 	}
 	
-	public void deleteById(String id) {
+	public void deleteById(String id) throws InterruptedException {
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("dataTables-logs")));
         WebElement tabla = driver.findElement(By.id("dataTables-logs"));
@@ -72,6 +72,7 @@ public class LogsDetailView {
             	break;
             }
         }
+        Thread.sleep(3000);
 	}
 	public LogsViewerView viewLog(String id) {
 		WebDriverWait wait2 = new WebDriverWait(driver,3);

@@ -12,17 +12,42 @@
             </class>
         </classes>
     </test>
-    <test name="addDesignTest">
+    <test name="addDesignCronTest">
     	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
     	<parameter name="username" value="dagserver"/>  
     	<parameter name="pwd" value="dagserver"/>
     	<parameter name="jarname" value="testing.jar"/>  
+    	<parameter name="dagname" value="TEST_DAG"/>
+    	<parameter name="group" value="group.test"/>
+    	<parameter name="cronexpr" value="0 0/1 * * * ?"/>
+    	<parameter name="step1" value="step1"/>
+    	<parameter name="step2" value="step2"/>
         <classes>
             <class name="dagserver.test.JobsTest">
                 <methods>
-                    <include name="addDesignTest" />
+                    <include name="addDesignCronTest" />
                 </methods>
             </class>
         </classes>
     </test>
+    <test name="addDesignListenerTest">
+    	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
+    	<parameter name="username" value="dagserver"/>  
+    	<parameter name="pwd" value="dagserver"/>
+    	<parameter name="jarname" value="testing.jar"/>  
+    	<parameter name="dagname" value="TEST_DAG"/>
+    	<parameter name="group" value="group.test"/>
+    	<parameter name="listenerType" value="onEnd"/>
+    	<parameter name="triggerType" value="GROUP"/>
+    	<parameter name="nameTarget" value="main.group"/>
+    	<parameter name="step1" value="step1"/>
+    	<parameter name="step2" value="step2"/>
+        <classes>
+            <class name="dagserver.test.JobsTest">
+                <methods>
+                    <include name="addDesignListenerTest" />
+                </methods>
+            </class>
+        </classes>
+    </test> 
 </suite>

@@ -5,9 +5,9 @@
     <classes>
       <class name="dagserver.test.JobsTest">
         <methods>
+          <include name="addDesignCronTest"/>
           <include name="beforeSuite"/>
           <include name="close"/>
-          <include name="systemJobsTest"/>
         </methods>
       </class> <!-- dagserver.test.JobsTest -->
     </classes>

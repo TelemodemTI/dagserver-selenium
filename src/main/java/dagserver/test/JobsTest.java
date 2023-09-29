@@ -61,8 +61,8 @@ public class JobsTest extends BaseTest {
 	}
 	
 	@Test
-    @Parameters({"url","username","pwd","jarname"})
-	void addDesignTest(String url,String username, String pwd, String jarname) throws InterruptedException {
+    @Parameters({"url","username","pwd","jarname","dagname","group","cronexpr","step1","step2"})
+	void addDesignCronTest(String url,String username, String pwd, String jarname,String dagname,String group,String cronexpr,String step1, String step2) throws InterruptedException {
 		driver.get(url);
     	LoginForm login = new LoginForm(driver);
     	if(login.login(username, pwd)) {
@@ -70,6 +70,36 @@ public class JobsTest extends BaseTest {
     		JobsView jobs = autenticado.goToJobs();
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
+    		newform.createCronDag(dagname, group, cronexpr);
+    		newform.addDummyStep(step1);
+    		var params = newform.selectStage(step1);
+    		params.remove();
+    		newform.addDummyStep(step2);
+    		var params2 = newform.selectStage(step2);
+    		params2.close();
+    		newform.save();
+    		assertTrue(true);
+    	}
+	}
+	@Test
+    @Parameters({"url","username","pwd","jarname","dagname","group","listenerType","triggerType","nameTarget","step1","step2"})
+	void addDesignListenerTest(String url,String username, String pwd, String jarname,String dagname,String group,String listenerType,String triggerType,String nameTarget,String step1, String step2) throws InterruptedException {
+		driver.get(url);
+    	LoginForm login = new LoginForm(driver);
+    	if(login.login(username, pwd)) {
+    		AuthenticatedView autenticado = new AuthenticatedView(driver);
+    		JobsView jobs = autenticado.goToJobs();
+    		var newform = jobs.newJobForm();
+    		newform.setName(jarname);
+    		newform.createListenerDag(dagname, group,listenerType,triggerType,nameTarget);
+    		newform.addDummyStep(step1);
+    		var params = newform.selectStage(step1);
+    		params.remove();
+    		newform.addDummyStep(step2);
+    		var params2 = newform.selectStage(step2);
+    		params2.close();
+    		newform.save();
+    		assertTrue(true);
     	}
 	}
 }
