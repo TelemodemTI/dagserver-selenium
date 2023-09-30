@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import dagserver.pom.jobs.ParamsDialog;
 import dagserver.pom.jobs.ParamsDialogNewJob;
 
 public class NewDesignView {

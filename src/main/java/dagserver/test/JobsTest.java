@@ -6,6 +6,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import dagserver.pom.authenticated.AuthenticatedView;
 import dagserver.pom.authenticated.DependenciesView;
+import dagserver.pom.authenticated.EditDesignView;
 import dagserver.pom.authenticated.JobsDetailView;
 import dagserver.pom.authenticated.JobsView;
 import dagserver.pom.authenticated.LogsDetailView;
@@ -102,4 +103,50 @@ public class JobsTest extends BaseTest {
     		assertTrue(true);
     	}
 	}
+	@Test
+    @Parameters({"url","username","pwd","jarname","dagname","newjarname","stepname","uploadfile"})
+	void editDesignDagTest(String url,String username, String pwd,String jarname, String dagname, String newjarname,String stepname,String uploadfile) throws InterruptedException {
+		driver.get(url);
+    	LoginForm login = new LoginForm(driver);
+    	if(login.login(username, pwd)) {
+    		AuthenticatedView autenticado = new AuthenticatedView(driver);
+    		JobsView jobs = autenticado.goToJobs();
+    		jobs.selectDesigndTab();
+    		if(jobs.existDesign(jarname)) {
+    			EditDesignView editor = jobs.editDesign(jarname);
+    			if(editor.execute() == null) {
+    				editor.selectDag(dagname);
+    				var resultModal = editor.execute();
+    				resultModal.close();
+    				var renamer = editor.rename();
+    				renamer.save(newjarname);
+    				jobs.selectDesigndTab();
+    				EditDesignView editor2 = jobs.editDesign(newjarname);
+    				editor2.selectDag(dagname);
+    				var params = editor2.selectStage(stepname);
+    				var result = params.test();
+    				result.close();
+    				jobs = autenticado.goToJobs();
+    	    		jobs.selectDesigndTab();
+    	    		jobs.exportDesign(newjarname);
+    	    		jobs.deleteDesign(newjarname);
+    	    		
+    	    		jobs = autenticado.goToJobs();
+    	    		jobs.selectDesigndTab();
+    	    		
+    	    		var importer = jobs.importJar();
+    	    		importer.importNewJob(uploadfile);
+    	    		jobs = autenticado.goToJobs();
+    	    		jobs.selectDesigndTab();
+    	    		jobs.compileDesign(newjarname);
+    	    		assertTrue(true);
+    			} else {
+    				assertTrue(false,"problema en editor?");
+    			}
+    		} else {
+    			assertTrue(false,"problema en diseñador?");
+    		}
+    	}
+	}
+	
 }
