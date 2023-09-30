@@ -15,14 +15,15 @@ public class JobsDetailView {
 	public JobsDetailView(WebDriver driver) {
 		this.driver = driver;
 	}
-	public void selectTab() {
+	public void selectTab() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver,3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(tabLink));
 		driver.findElement(tabLink).click();
+		Thread.sleep(3000);
 	}
 	public ParamsDialog selectStage(String dagname, String stepName) {
 		 JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-	     String str = "$(\"#canvas-det\").val(\"{\"dagname\":\""+dagname+"\",\"selectedStep\":\""+stepName+"\"});";
+	     String str = "$(\"#canvas-det\").val(\"{\\\"dagname\\\":\\\""+dagname+"\\\",\\\"selectedStep\\\":\\\""+stepName+"\\\"}\");";
 	     jsExecutor.executeScript(str);
 	     String str2 = "$(\"#canvas-det\").trigger(\"change\");";
 	     jsExecutor.executeScript(str2);

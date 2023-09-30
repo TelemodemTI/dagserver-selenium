@@ -10,6 +10,7 @@ import dagserver.pom.authenticated.EditDesignView;
 import dagserver.pom.authenticated.JobsDetailView;
 import dagserver.pom.authenticated.JobsView;
 import dagserver.pom.authenticated.LogsDetailView;
+import dagserver.pom.jobs.ExecutionDialog;
 import dagserver.pom.login.LoginForm;
 import dagserver.utils.BaseTest;
 
@@ -149,4 +150,54 @@ public class JobsTest extends BaseTest {
     	}
 	}
 	
+	@Test
+    @Parameters({"url","username","pwd","jarname","dagname","logid","stepname"})
+	void compiledDagTest(String url,String username, String pwd, String jarname,String dagname,String logid,String stepname) throws InterruptedException {
+		driver.get(url);
+    	LoginForm login = new LoginForm(driver);
+    	if(login.login(username, pwd)) {
+    		AuthenticatedView autenticado = new AuthenticatedView(driver);
+    		JobsView jobs = autenticado.goToJobs();
+    		jobs.selectCompiledTab();
+    		if(jobs.existJob(jarname)) {
+    			jobs.selectOption(dagname, 5);
+    			new DependenciesView(driver);
+    			jobs = autenticado.goToJobs();
+        		jobs.selectCompiledTab();
+        		jobs.selectOption(dagname, 4);
+        		String rv = jobs.getSchedulerActive(dagname);
+        		if(Boolean.parseBoolean(rv)) {
+        			jobs.selectOption(dagname, 4);
+        			jobs.selectOption(dagname, 1);
+        			ExecutionDialog exec = new ExecutionDialog(driver);
+        			exec.close();
+        			jobs.selectOption(dagname, 3);
+        			LogsDetailView viewer = new LogsDetailView(driver);
+        			viewer.viewLog(logid);
+        			jobs = autenticado.goToJobs();
+            		jobs.selectCompiledTab();
+            		jobs.selectOption(dagname, 3);
+            		viewer = new LogsDetailView(driver);
+            		viewer.deleteById(logid);
+            		jobs = autenticado.goToJobs();
+            		jobs.selectCompiledTab();
+            		jobs.selectOption(dagname, 3);
+            		viewer = new LogsDetailView(driver);
+            		viewer.deleteAll();
+            		jobs = autenticado.goToJobs();
+            		jobs.selectCompiledTab();
+            		jobs.selectOption(dagname, 2);
+            		JobsDetailView detail = new JobsDetailView(driver);
+        			detail.selectTab();
+        			var paramdialog = detail.selectStage(dagname, stepname);
+        			paramdialog.close();
+        			assertTrue(true);
+        		} else {
+        			assertTrue(false,"problema en scheduling?");
+        		}
+    		} else {
+    			assertTrue(false,"job no existe?");
+    		}
+    	}
+	}
 }

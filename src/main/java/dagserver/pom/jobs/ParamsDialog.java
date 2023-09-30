@@ -16,7 +16,7 @@ public class ParamsDialog {
 	}
 
 	public void close() {
-		driver.findElement(By.xpath("//*[@id=\"param-modalexistingj\"]/div[2]/div/div[3]/button[2]")).click();
+		driver.findElement(By.xpath("//*[@id=\"param-modaljardetailj\"]/div[2]/div/div[3]/button[1]")).click();
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"param-modaljardetailj\"]")));
 	}

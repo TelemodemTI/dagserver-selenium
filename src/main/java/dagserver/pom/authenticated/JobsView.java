@@ -20,15 +20,19 @@ public class JobsView {
 	public JobsView(WebDriver driver) {
 		this.driver = driver;
 	}
-	public void selectCompiledTab() {
+	public void selectCompiledTab() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/ul/li[1]/a")));
 		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/ul/li[1]/a")).click();
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("dataTables-jobs")));
+        Thread.sleep(3000);
 	}
-	public void selectDesigndTab() {
+	public void selectDesigndTab() throws InterruptedException {
 		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/ul/li[2]/a")).click();
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("dataTables-uncompiledjobs")));
+        Thread.sleep(3000);
 	}
 	
 	public List<Map<String, String>> getActualDesigns() {
@@ -104,7 +108,7 @@ public class JobsView {
 		}
 		return found;
 	}
-	public void selectOption(String dagname, Integer botonIndex) {
+	public void selectOption(String dagname, Integer botonIndex) throws InterruptedException {
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("dataTables-jobs")));
         WebElement tabla = driver.findElement(By.id("dataTables-jobs"));
@@ -118,6 +122,22 @@ public class JobsView {
             	break;
             }
         }
+        Thread.sleep(3000);
+	}
+	public String getSchedulerActive(String dagname) throws InterruptedException {
+		WebDriverWait wait2 = new WebDriverWait(driver,3);
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("dataTables-jobs")));
+        WebElement tabla = driver.findElement(By.id("dataTables-jobs"));
+        List<WebElement> filas = tabla.findElements(By.tagName("tr"));
+        for (int i = 1; i < filas.size(); i++) {
+            WebElement fila = filas.get(i);
+            List<WebElement> columnas = fila.findElements(By.tagName("td"));
+            WebElement dagColumn = columnas.get(3);
+            if(dagColumn.getText().equals(dagname)) {
+            	return columnas.get(4).getText();
+            }
+        }
+		return null;
 	}
 	
 	public NewDesignView newJobForm() {

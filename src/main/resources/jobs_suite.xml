@@ -67,5 +67,20 @@
             </class>
         </classes>
     </test>
-    
+     <test name="compiledDagTest">
+    	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
+    	<parameter name="username" value="dagserver"/>  
+    	<parameter name="pwd" value="dagserver"/>
+    	<parameter name="jarname" value="testing1.jar"/>
+    	<parameter name="dagname" value="generated_dag.main.TEST_DAG"/>
+    	<parameter name="logid" value="881"/>
+    	<parameter name="stepname" value="step2"/>
+    	<classes>
+            <class name="dagserver.test.JobsTest">
+                <methods>
+                    <include name="compiledDagTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

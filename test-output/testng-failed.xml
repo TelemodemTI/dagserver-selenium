@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [jobs]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="editDesignDagTest(failed)">
-    <parameter name="dagname" value="TEST_DAG"/>
+  <test thread-count="5" name="compiledDagTest(failed)">
+    <parameter name="dagname" value="generated_dag.main.TEST_DAG"/>
     <parameter name="jarname" value="testing1.jar"/>
     <parameter name="stepname" value="step2"/>
-    <parameter name="uploadfile" value="c:\\tmp\\jarfile_json.json"/>
-    <parameter name="newjarname" value="testing2.jar"/>
+    <parameter name="logid" value="873"/>
     <parameter name="pwd" value="dagserver"/>
     <parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>
     <parameter name="username" value="dagserver"/>
     <classes>
       <class name="dagserver.test.JobsTest">
         <methods>
-          <include name="editDesignDagTest" invocation-numbers="0"/>
           <include name="beforeSuite"/>
           <include name="close"/>
+          <include name="compiledDagTest" invocation-numbers="0"/>
         </methods>
       </class> <!-- dagserver.test.JobsTest -->
     </classes>
-  </test> <!-- editDesignDagTest(failed) -->
+  </test> <!-- compiledDagTest(failed) -->
 </suite> <!-- Failed suite [jobs] -->

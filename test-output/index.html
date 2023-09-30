@@ -104,7 +104,7 @@
                     <div class="method-list-content passed suite-jobs">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-jobs" title="dagserver.test.JobsTest" class="method navigator-link" hash-for-method="editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...)">editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-jobs" title="dagserver.test.JobsTest" class="method navigator-link" hash-for-method="compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...)">compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-jobs -->
@@ -127,10 +127,10 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...)">
-                  </a> <!-- editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...) -->
-                  <span class="method-name">editDesignDagTest</span>
-                  <span class="parameters">(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testing2.jar, step2, c:\\tmp\\jarfile_json.json)</span>
+                  <a name="compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...)">
+                  </a> <!-- compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...) -->
+                  <span class="method-name">compiledDagTest</span>
+                  <span class="parameters">(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.main.TEST_DAG, 881, step2)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -145,23 +145,22 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite name=&quot;jobs&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;editDesignDagTest&quot;&gt;
-    &lt;parameter name=&quot;dagname&quot; value=&quot;TEST_DAG&quot;/&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;compiledDagTest&quot;&gt;
+    &lt;parameter name=&quot;dagname&quot; value=&quot;generated_dag.main.TEST_DAG&quot;/&gt;
     &lt;parameter name=&quot;jarname&quot; value=&quot;testing1.jar&quot;/&gt;
     &lt;parameter name=&quot;stepname&quot; value=&quot;step2&quot;/&gt;
-    &lt;parameter name=&quot;uploadfile&quot; value=&quot;c:\\tmp\\jarfile_json.json&quot;/&gt;
-    &lt;parameter name=&quot;newjarname&quot; value=&quot;testing2.jar&quot;/&gt;
+    &lt;parameter name=&quot;logid&quot; value=&quot;881&quot;/&gt;
     &lt;parameter name=&quot;pwd&quot; value=&quot;dagserver&quot;/&gt;
     &lt;parameter name=&quot;url&quot; value=&quot;http://localhost:8080/dagserver/cli/index.html&quot;/&gt;
     &lt;parameter name=&quot;username&quot; value=&quot;dagserver&quot;/&gt;
     &lt;classes&gt;
       &lt;class name=&quot;dagserver.test.JobsTest&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;editDesignDagTest&quot;/&gt;
+          &lt;include name=&quot;compiledDagTest&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- dagserver.test.JobsTest --&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- editDesignDagTest --&gt;
+  &lt;/test&gt; &lt;!-- compiledDagTest --&gt;
 &lt;/suite&gt; &lt;!-- jobs --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -173,7 +172,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">editDesignDagTest (1 class)</span>
+                <span class="test-name">compiledDagTest (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -201,14 +200,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'editDesignDagTest')
+data.setCell(0, 1, 'compiledDagTest')
 data.setCell(0, 2, 'dagserver.test.JobsTest')
-data.setCell(0, 3, 12421);
+data.setCell(0, 3, 65028);
 window.suiteTableData['jobs']= { tableData: data, tableDiv: 'times-div-jobs'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 12 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-jobs">
               </div> <!-- times-div-jobs -->
             </div> <!-- times-div -->
@@ -223,7 +222,7 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">3 ignored methods</span>
+            <span class="header-content">4 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
@@ -232,6 +231,8 @@ return data;
                 <span class="ignored-method-name">addDesignListenerTest</span>
                 <br/>
                 <span class="ignored-method-name">addDesignCronTest</span>
+                <br/>
+                <span class="ignored-method-name">editDesignDagTest</span>
                 <br/>
                 <span class="ignored-method-name">systemJobsTest</span>
                 <br/>
@@ -251,12 +252,12 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
-                <span class="method-name">editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...)</span>
-                <span class="method-start">1526 ms</span>
+                <span class="method-name">compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...)</span>
+                <span class="method-start">1911 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">close</span>
-                <span class="method-start">13951 ms</span>
+                <span class="method-start">66944 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
