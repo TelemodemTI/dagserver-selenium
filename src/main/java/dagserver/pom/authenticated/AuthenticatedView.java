@@ -10,10 +10,11 @@ import dagserver.utils.SeleniumTestException;
 public class AuthenticatedView {
 	
 	protected WebDriver driver;
-	private By logoutBtn = By.xpath("//*[@id=\"wrapper\"]/nav/ul[2]/li[3]/ul/li/a");
+	private By logoutBtn = By.xpath("//*[@id=\"logout-btn\"]");
 	private By credentialsLink = By.xpath("//*[@id=\"side-menu\"]/li[3]/ul/li/a");
 	private By propsLink = By.xpath("//*[@id=\"side-menu\"]/li[2]/ul/li[1]/a");
 	private By jobsLink = By.xpath("//*[@id=\"side-menu\"]/li[2]/ul/li[2]/a");
+	private By channelLink = By.xpath("//*[@id=\"side-menu\"]/li[1]/ul/li/a");
 	
 	public AuthenticatedView(WebDriver driver) {
 		this.driver = driver;
@@ -25,7 +26,8 @@ public class AuthenticatedView {
 		return new AdminCredentialsView(driver);
 	}
 	public void logout() {
-		driver.findElement(By.xpath("//*[@id=\"wrapper\"]/nav/ul[2]/li[3]/a")).click();
+        By elem = By.xpath("//*[@id=\"wrapper\"]/nav/ul[3]/li[3]/a");
+		driver.findElement(elem).click();
 		WebDriverWait wait = new WebDriverWait(driver,3);
         wait.until(ExpectedConditions.visibilityOfElementLocated(logoutBtn));
         driver.findElement(logoutBtn).click();
@@ -43,5 +45,12 @@ public class AuthenticatedView {
         wait.until(ExpectedConditions.visibilityOfElementLocated(jobsLink));
 		driver.findElement(jobsLink).click();
 		return new JobsView(driver);
+	}
+	public InputChannelView goToInputChannels() throws InterruptedException {
+		Thread.sleep(3000);
+		WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(channelLink));
+		driver.findElement(channelLink).click();
+		return new InputChannelView(driver);
 	}
 }

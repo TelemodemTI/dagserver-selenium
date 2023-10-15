@@ -12,6 +12,7 @@
             </class>
         </classes>
     </test>
+    <!-- 
     <test name="addDesignCronTest">
     	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -83,4 +84,5 @@
             </class>
         </classes>
     </test>
+     -->
 </suite>

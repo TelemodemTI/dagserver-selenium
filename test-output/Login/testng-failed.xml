@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Login]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="loginOkTest(failed)">
-    <parameter name="pwd" value="dagserver"/>
-    <parameter name="url" value="http://localhost:8080/dagserver/cli"/>
-    <parameter name="username" value="dagserver"/>
-    <classes>
-      <class name="dagserver.test.LoginTest">
-        <methods>
-          <include name="loginOk" invocation-numbers="0"/>
-          <include name="beforeSuite"/>
-          <include name="close"/>
-        </methods>
-      </class> <!-- dagserver.test.LoginTest -->
-    </classes>
-  </test> <!-- loginOkTest(failed) -->
   <test thread-count="5" name="logoutOkTest(failed)">
     <parameter name="pwd" value="dagserver"/>
-    <parameter name="url" value="http://localhost:8080/dagserver/cli"/>
+    <parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>
     <parameter name="username" value="dagserver"/>
     <classes>
       <class name="dagserver.test.LoginTest">
@@ -29,18 +15,4 @@
       </class> <!-- dagserver.test.LoginTest -->
     </classes>
   </test> <!-- logoutOkTest(failed) -->
-  <test thread-count="5" name="loginNOkTest(failed)">
-    <parameter name="pwd" value="dagserver1"/>
-    <parameter name="url" value="http://localhost:8080/dagserver/cli"/>
-    <parameter name="username" value="dagserver1"/>
-    <classes>
-      <class name="dagserver.test.LoginTest">
-        <methods>
-          <include name="loginNOK" invocation-numbers="0"/>
-          <include name="beforeSuite"/>
-          <include name="close"/>
-        </methods>
-      </class> <!-- dagserver.test.LoginTest -->
-    </classes>
-  </test> <!-- loginNOkTest(failed) -->
 </suite> <!-- Failed suite [Login] -->

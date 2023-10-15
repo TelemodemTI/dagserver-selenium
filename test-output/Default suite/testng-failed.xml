@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="dagserver.test.JobsTest">
+      <class name="dagserver.test.LoginTest">
         <methods>
-          <include name="addDesignCronTest"/>
           <include name="beforeSuite"/>
           <include name="close"/>
+          <include name="logoutOk"/>
         </methods>
-      </class> <!-- dagserver.test.JobsTest -->
+      </class> <!-- dagserver.test.LoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

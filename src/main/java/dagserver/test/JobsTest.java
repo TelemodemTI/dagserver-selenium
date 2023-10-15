@@ -29,16 +29,14 @@ public class JobsTest extends BaseTest {
     			jobs.selectOption("background_system_dag", 1);
     			JobsDetailView detail = new JobsDetailView(driver);
     			detail.selectTab();
-    			try {
-    				detail.selectStage("background_system_dag", "internal");	
-    				assertTrue(false,"existe un problema en el canvas de sistema?");
-    			} catch (Exception e) {
-    				jobs = autenticado.goToJobs();
-    				jobs.selectCompiledTab();
-    				jobs.selectOption("background_system_dag", 2);
-    				LogsDetailView logdetail = new LogsDetailView(driver);
-    				var data = logdetail.getActualLogs();
-    				if(!data.isEmpty()) {
+    			var dialog = detail.selectStage("background_system_dag", "internal");
+    			dialog.close();
+    			jobs = autenticado.goToJobs();
+    			jobs.selectCompiledTab();
+    			jobs.selectOption("background_system_dag", 2);
+    			LogsDetailView logdetail = new LogsDetailView(driver);
+    			var data = logdetail.getActualLogs();
+    			if(!data.isEmpty()) {
     					var logdata = data.get(0);
     					logdetail.deleteById(logdata.get("Id"));
     					if(!logdetail.existLog(logdata.get("Id"))) {
@@ -48,19 +46,18 @@ public class JobsTest extends BaseTest {
     					} else {
     						assertTrue(false,"existe un problema en el despliegue de los logs");
     					}
-    				}
-    				jobs = autenticado.goToJobs();
-    				jobs.selectCompiledTab();
-    				jobs.selectOption("background_system_dag", 3);
-    				new DependenciesView(driver);
-    				assertTrue(true);
-				}
-    			
-    		} else {
+    			}
+    			jobs = autenticado.goToJobs();
+    			jobs.selectCompiledTab();
+    			jobs.selectOption("background_system_dag", 3);
+    			new DependenciesView(driver);
+    			assertTrue(true);
+			}
+    	} else {
     			assertTrue(false,"Jobs de sistema no incluidos?");
-    		}
     	}
-	}
+   }
+	
 	
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","group","cronexpr","step1","step2"})
