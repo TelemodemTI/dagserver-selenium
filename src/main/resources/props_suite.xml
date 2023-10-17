@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="props">
+	<listeners>
+        	<listener class-name="dagserver.utils.MyListener" />
+    </listeners>
     <test name="propsTest">
     	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
     	<parameter name="username" value="dagserver"/>  

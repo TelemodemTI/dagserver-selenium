@@ -1,6 +1,11 @@
 package dagserver.test;
 
 import static org.testng.Assert.assertTrue;
+
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import dagserver.pom.authenticated.AdminCredentialsView;
@@ -14,7 +19,7 @@ public class AdminTest extends BaseTest {
 	
 	@Test
     @Parameters({"url","username","pwd","newusername","newpwd","newaccountType"})  
-    void createUser(String url,String username, String pwd,String newusername, String newpwd, String newaccountType) throws SeleniumTestException {
+    void createUser(String url,String username, String pwd,String newusername, String newpwd, String newaccountType,ITestContext context) throws SeleniumTestException, IOException {
 		driver.get(url);
     	LoginForm login = new LoginForm(driver);
     	if(login.login(username, pwd)) {
@@ -28,8 +33,10 @@ public class AdminTest extends BaseTest {
     		newuserDialog.saveNewUser(newusername, newpwd, newaccountType);
     		credentials = autenticado.goToCredentials();
     		if(credentials.existCredential(newusername)) {
+    			this.writeEvidence(context,"createUser","OK",By.xpath("/html/body"));
     			assertTrue(true);
     		} else {
+    			this.writeEvidence(context,"createUser","ERROR",By.xpath("/html/body"));
     			assertTrue(false,"Cuenta de usuario no agregada");
     		}
     	}

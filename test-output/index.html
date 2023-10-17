@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 3 failed tests</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,8 +39,8 @@
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" panel-name="suite-channel" class="navigator-link">
-              <span class="suite-name border-passed">channel</span>
+            <a href="#" panel-name="suite-jobs" class="navigator-link">
+              <span class="suite-name border-failed">jobs</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,37 +50,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" panel-name="test-xml-channel" class="navigator-link ">
-                    <span>C:\Users\diego\Documents\GitHub\dagserver-selenium\src\main\resources\channels_suite.xml</span>
+                  <a href="#" panel-name="test-xml-jobs" class="navigator-link ">
+                    <span>C:\Users\diego\Documents\GitHub\dagserver-selenium\src\main\resources\jobs_suite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="testlist-channel" class="navigator-link ">
-                    <span class="test-stats">1 test</span>
+                  <a href="#" panel-name="testlist-jobs" class="navigator-link ">
+                    <span class="test-stats">5 tests</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="group-channel" class="navigator-link ">
+                  <a href="#" panel-name="group-jobs" class="navigator-link ">
                     <span>0 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="times-channel" class="navigator-link ">
+                  <a href="#" panel-name="times-jobs" class="navigator-link ">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="reporter-channel" class="navigator-link ">
+                  <a href="#" panel-name="reporter-jobs" class="navigator-link ">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="ignored-methods-channel" class="navigator-link ">
+                  <a href="#" panel-name="ignored-methods-jobs" class="navigator-link ">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" panel-name="chronological-channel" class="navigator-link ">
+                  <a href="#" panel-name="chronological-jobs" class="navigator-link ">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -93,21 +93,50 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">5 methods, 3 failed,   2 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-jobs" class="hide-methods failed suite-jobs"> (hide)</a> <!-- hide-methods failed suite-jobs -->
+                      <a href="#" panel-name="suite-jobs" class="show-methods failed suite-jobs"> (show)</a> <!-- show-methods failed suite-jobs -->
+                    </span>
+                    <div class="method-list-content failed suite-jobs">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-jobs" title="dagserver.test.JobsTest" class="method navigator-link" hash-for-method="addDesignListenerTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...)">addDesignListenerTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-jobs" title="dagserver.test.JobsTest" class="method navigator-link" hash-for-method="compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...)">compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-jobs" title="dagserver.test.JobsTest" class="method navigator-link" hash-for-method="editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...)">editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-jobs -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
                     <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-channel" class="hide-methods passed suite-channel"> (hide)</a> <!-- hide-methods passed suite-channel -->
-                      <a href="#" panel-name="suite-channel" class="show-methods passed suite-channel"> (show)</a> <!-- show-methods passed suite-channel -->
+                      <a href="#" panel-name="suite-jobs" class="hide-methods passed suite-jobs"> (hide)</a> <!-- hide-methods passed suite-jobs -->
+                      <a href="#" panel-name="suite-jobs" class="show-methods passed suite-jobs"> (show)</a> <!-- show-methods passed suite-jobs -->
                     </span>
-                    <div class="method-list-content passed suite-channel">
+                    <div class="method-list-content passed suite-jobs">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-channel" title="dagserver.test.InputChannelTest" class="method navigator-link" hash-for-method="redisChannelTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver)">redisChannelTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver)</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-jobs" title="dagserver.test.JobsTest" class="method navigator-link" hash-for-method="addDesignCronTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...)">addDesignCronTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-channel -->
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-jobs" title="dagserver.test.JobsTest" class="method navigator-link" hash-for-method="systemJobsTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, org.testng.TestRunner@31ceba99)">systemJobsTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, org.testng.TestRunner@31ceba99)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-jobs -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -118,138 +147,400 @@
     </div> <!-- navigator-root -->
     <div class="wrapper">
       <div class="main-panel-root">
-        <div panel-name="suite-channel" class="panel channel">
-          <div class="suite-channel-class-passed">
+        <div panel-name="suite-jobs" class="panel jobs">
+          <div class="suite-jobs-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">dagserver.test.InputChannelTest</span>
+              <img src="failed.png"/>
+              <span class="class-name">dagserver.test.JobsTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="redisChannelTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver)">
-                  </a> <!-- redisChannelTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver) -->
-                  <span class="method-name">redisChannelTest</span>
-                  <span class="parameters">(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver)</span>
+                  <a name="addDesignListenerTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...)">
+                  </a> <!-- addDesignListenerTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...) -->
+                  <span class="method-name">addDesignListenerTest</span>
+                  <span class="parameters">(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.test, onEnd, GROUP, main.group, step1, step2, org.testng.TestRunner@2f9dda71)</span>
+                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;button _ngcontent-ccm-c18=&quot;&quot; type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;...&lt;/button&gt; is not clickable at point (931, 20). Other element would receive the click: &lt;a _ngcontent-ccm-c2=&quot;&quot; data-toggle=&quot;dropdown&quot; href=&quot;#&quot; class=&quot;dropdown-toggle&quot;&gt;...&lt;/a&gt;
+  (Session info: chrome=117.0.5938.152)
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;LAPTOP-K61ULR8P&apos;, ip: &apos;172.31.32.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 117.0.5938.152, chrome: {chromedriverVersion: 117.0.5938.149 (e3344ddefa1..., userDataDir: C:\Users\diego\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56741}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: fce1279fa7500b89cbe3a387b88eae2e
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+	at dagserver.pom.authenticated.NewDesignView.save(NewDesignView.java:115)
+	at dagserver.test.JobsTest.addDesignListenerTest(JobsTest.java:110)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 32 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...)">
+                  </a> <!-- compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...) -->
+                  <span class="method-name">compiledDagTest</span>
+                  <span class="parameters">(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.main.TEST_DAG, 881, step2, org.testng.TestRunner@10b87ff6)</span>
+                  <div class="stack-trace">java.lang.AssertionError: job no existe? expected [true] but found [false]
+	at dagserver.test.JobsTest.compiledDagTest(JobsTest.java:216)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 30 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...)">
+                  </a> <!-- editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...) -->
+                  <span class="method-name">editDesignDagTest</span>
+                  <span class="parameters">(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testing2.jar, step2, c:\\tmp\\jarfile_json.json, org.testng.TestRunner@58739e5e)</span>
+                  <div class="stack-trace">java.lang.AssertionError: problema en diseñador? expected [true] but found [false]
+	at dagserver.test.JobsTest.editDesignDagTest(JobsTest.java:162)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 30 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-channel-class-passed -->
-        </div> <!-- panel channel -->
-        <div panel-name="test-xml-channel" class="panel">
+          </div> <!-- suite-jobs-class-failed -->
+          <div class="suite-jobs-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">dagserver.test.JobsTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="addDesignCronTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...)">
+                  </a> <!-- addDesignCronTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...) -->
+                  <span class="method-name">addDesignCronTest</span>
+                  <span class="parameters">(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.test, 0 0/1 * * * ?, step1, step2, org.testng.TestRunner@1da4b3f9)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="systemJobsTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, org.testng.TestRunner@31ceba99)">
+                  </a> <!-- systemJobsTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, org.testng.TestRunner@31ceba99) -->
+                  <span class="method-name">systemJobsTest</span>
+                  <span class="parameters">(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, org.testng.TestRunner@31ceba99)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-jobs-class-passed -->
+        </div> <!-- panel jobs -->
+        <div panel-name="test-xml-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\diego\Documents\GitHub\dagserver-selenium\src\main\resources\channels_suite.xml</span>
+            <span class="header-content">C:\Users\diego\Documents\GitHub\dagserver-selenium\src\main\resources\jobs_suite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite name=&quot;channel&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;redisChannelTest&quot;&gt;
+&lt;suite name=&quot;jobs&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;dagserver.utils.MyListener&quot;/&gt;
+  &lt;/listeners&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;systemJobsTest&quot;&gt;
     &lt;parameter name=&quot;pwd&quot; value=&quot;dagserver&quot;/&gt;
     &lt;parameter name=&quot;url&quot; value=&quot;http://localhost:8080/dagserver/cli/index.html&quot;/&gt;
     &lt;parameter name=&quot;username&quot; value=&quot;dagserver&quot;/&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;dagserver.test.InputChannelTest&quot;&gt;
+      &lt;class name=&quot;dagserver.test.JobsTest&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;redisChannelTest&quot;/&gt;
+          &lt;include name=&quot;systemJobsTest&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- dagserver.test.InputChannelTest --&gt;
+      &lt;/class&gt; &lt;!-- dagserver.test.JobsTest --&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- redisChannelTest --&gt;
-&lt;/suite&gt; &lt;!-- channel --&gt;
+  &lt;/test&gt; &lt;!-- systemJobsTest --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;addDesignCronTest&quot;&gt;
+    &lt;parameter name=&quot;dagname&quot; value=&quot;TEST_DAG&quot;/&gt;
+    &lt;parameter name=&quot;cronexpr&quot; value=&quot;0 0/1 * * * ?&quot;/&gt;
+    &lt;parameter name=&quot;jarname&quot; value=&quot;testing.jar&quot;/&gt;
+    &lt;parameter name=&quot;pwd&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;parameter name=&quot;step2&quot; value=&quot;step2&quot;/&gt;
+    &lt;parameter name=&quot;url&quot; value=&quot;http://localhost:8080/dagserver/cli/index.html&quot;/&gt;
+    &lt;parameter name=&quot;username&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;parameter name=&quot;group&quot; value=&quot;group.test&quot;/&gt;
+    &lt;parameter name=&quot;step1&quot; value=&quot;step1&quot;/&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;dagserver.test.JobsTest&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;addDesignCronTest&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- dagserver.test.JobsTest --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- addDesignCronTest --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;addDesignListenerTest&quot;&gt;
+    &lt;parameter name=&quot;dagname&quot; value=&quot;TEST_DAG&quot;/&gt;
+    &lt;parameter name=&quot;jarname&quot; value=&quot;testing.jar&quot;/&gt;
+    &lt;parameter name=&quot;listenerType&quot; value=&quot;onEnd&quot;/&gt;
+    &lt;parameter name=&quot;nameTarget&quot; value=&quot;main.group&quot;/&gt;
+    &lt;parameter name=&quot;triggerType&quot; value=&quot;GROUP&quot;/&gt;
+    &lt;parameter name=&quot;pwd&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;parameter name=&quot;step2&quot; value=&quot;step2&quot;/&gt;
+    &lt;parameter name=&quot;url&quot; value=&quot;http://localhost:8080/dagserver/cli/index.html&quot;/&gt;
+    &lt;parameter name=&quot;username&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;parameter name=&quot;group&quot; value=&quot;group.test&quot;/&gt;
+    &lt;parameter name=&quot;step1&quot; value=&quot;step1&quot;/&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;dagserver.test.JobsTest&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;addDesignListenerTest&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- dagserver.test.JobsTest --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- addDesignListenerTest --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;editDesignDagTest&quot;&gt;
+    &lt;parameter name=&quot;dagname&quot; value=&quot;TEST_DAG&quot;/&gt;
+    &lt;parameter name=&quot;jarname&quot; value=&quot;testing1.jar&quot;/&gt;
+    &lt;parameter name=&quot;stepname&quot; value=&quot;step2&quot;/&gt;
+    &lt;parameter name=&quot;uploadfile&quot; value=&quot;c:\\tmp\\jarfile_json.json&quot;/&gt;
+    &lt;parameter name=&quot;newjarname&quot; value=&quot;testing2.jar&quot;/&gt;
+    &lt;parameter name=&quot;pwd&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;parameter name=&quot;url&quot; value=&quot;http://localhost:8080/dagserver/cli/index.html&quot;/&gt;
+    &lt;parameter name=&quot;username&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;dagserver.test.JobsTest&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;editDesignDagTest&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- dagserver.test.JobsTest --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- editDesignDagTest --&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;compiledDagTest&quot;&gt;
+    &lt;parameter name=&quot;dagname&quot; value=&quot;generated_dag.main.TEST_DAG&quot;/&gt;
+    &lt;parameter name=&quot;jarname&quot; value=&quot;testing1.jar&quot;/&gt;
+    &lt;parameter name=&quot;stepname&quot; value=&quot;step2&quot;/&gt;
+    &lt;parameter name=&quot;logid&quot; value=&quot;881&quot;/&gt;
+    &lt;parameter name=&quot;pwd&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;parameter name=&quot;url&quot; value=&quot;http://localhost:8080/dagserver/cli/index.html&quot;/&gt;
+    &lt;parameter name=&quot;username&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;dagserver.test.JobsTest&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;compiledDagTest&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- dagserver.test.JobsTest --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- compiledDagTest --&gt;
+&lt;/suite&gt; &lt;!-- jobs --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="testlist-channel" class="panel">
+        <div panel-name="testlist-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Tests for channel</span>
+            <span class="header-content">Tests for jobs</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">redisChannelTest (1 class)</span>
+                <span class="test-name">systemJobsTest (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">addDesignCronTest (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">addDesignListenerTest (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">editDesignDagTest (1 class)</span>
+              </li>
+              <li>
+                <span class="test-name">compiledDagTest (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="group-channel" class="panel">
+        <div panel-name="group-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Groups for channel</span>
+            <span class="header-content">Groups for jobs</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="times-channel" class="panel">
+        <div panel-name="times-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Times for channel</span>
+            <span class="header-content">Times for jobs</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="times-div">
               <script type="text/javascript">
-suiteTableInitFunctions.push('tableData_channel');
-function tableData_channel() {
+suiteTableInitFunctions.push('tableData_jobs');
+function tableData_jobs() {
 var data = new google.visualization.DataTable();
 data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(5);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'redisChannelTest')
-data.setCell(0, 2, 'dagserver.test.InputChannelTest')
-data.setCell(0, 3, 159446);
-window.suiteTableData['channel']= { tableData: data, tableDiv: 'times-div-channel'}
+data.setCell(0, 1, 'systemJobsTest')
+data.setCell(0, 2, 'dagserver.test.JobsTest')
+data.setCell(0, 3, 32714);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'addDesignListenerTest')
+data.setCell(1, 2, 'dagserver.test.JobsTest')
+data.setCell(1, 3, 21997);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'addDesignCronTest')
+data.setCell(2, 2, 'dagserver.test.JobsTest')
+data.setCell(2, 3, 18110);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'editDesignDagTest')
+data.setCell(3, 2, 'dagserver.test.JobsTest')
+data.setCell(3, 3, 4795);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'compiledDagTest')
+data.setCell(4, 2, 'dagserver.test.JobsTest')
+data.setCell(4, 3, 4631);
+window.suiteTableData['jobs']= { tableData: data, tableDiv: 'times-div-jobs'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 2 minutes</span>
-              <div id="times-div-channel">
-              </div> <!-- times-div-channel -->
+              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <div id="times-div-jobs">
+              </div> <!-- times-div-jobs -->
             </div> <!-- times-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="reporter-channel" class="panel">
+        <div panel-name="reporter-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">Reporter output for channel</span>
+            <span class="header-content">Reporter output for jobs</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="ignored-methods-channel" class="panel">
+        <div panel-name="ignored-methods-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">2 ignored methods</span>
+            <span class="header-content">20 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">dagserver.test.InputChannelTest</span>
+              <span class="ignored-class-name">dagserver.test.JobsTest</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">rabbitChannelTest</span>
+                <span class="ignored-method-name">addDesignListenerTest</span>
                 <br/>
-                <span class="ignored-method-name">gitHubChannelTest</span>
+                <span class="ignored-method-name">addDesignListenerTest</span>
+                <br/>
+                <span class="ignored-method-name">addDesignListenerTest</span>
+                <br/>
+                <span class="ignored-method-name">addDesignListenerTest</span>
+                <br/>
+                <span class="ignored-method-name">compiledDagTest</span>
+                <br/>
+                <span class="ignored-method-name">compiledDagTest</span>
+                <br/>
+                <span class="ignored-method-name">compiledDagTest</span>
+                <br/>
+                <span class="ignored-method-name">compiledDagTest</span>
+                <br/>
+                <span class="ignored-method-name">systemJobsTest</span>
+                <br/>
+                <span class="ignored-method-name">systemJobsTest</span>
+                <br/>
+                <span class="ignored-method-name">systemJobsTest</span>
+                <br/>
+                <span class="ignored-method-name">systemJobsTest</span>
+                <br/>
+                <span class="ignored-method-name">addDesignCronTest</span>
+                <br/>
+                <span class="ignored-method-name">addDesignCronTest</span>
+                <br/>
+                <span class="ignored-method-name">addDesignCronTest</span>
+                <br/>
+                <span class="ignored-method-name">addDesignCronTest</span>
+                <br/>
+                <span class="ignored-method-name">editDesignDagTest</span>
+                <br/>
+                <span class="ignored-method-name">editDesignDagTest</span>
+                <br/>
+                <span class="ignored-method-name">editDesignDagTest</span>
+                <br/>
+                <span class="ignored-method-name">editDesignDagTest</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
-        <div panel-name="chronological-channel" class="panel">
+        <div panel-name="chronological-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
             <span class="header-content">Methods in chronological order</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">dagserver.test.InputChannelTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">dagserver.test.JobsTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
-                <span class="method-name">beforeSuite</span>
+                <span class="method-name">beforeTest</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
-                <span class="method-name">redisChannelTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver)</span>
-                <span class="method-start">2176 ms</span>
+                <span class="method-name">systemJobsTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, org.testng.TestRunner@31ceba99)</span>
+                <span class="method-start">1486 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">close</span>
-                <span class="method-start">161640 ms</span>
+                <span class="method-start">34203 ms</span>
+              </div> <!-- configuration-test after -->
+              <div class="configuration-test before">
+                <span class="method-name">beforeTest</span>
+                <span class="method-start">34424 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <span class="method-name">addDesignCronTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...)</span>
+                <span class="method-start">35124 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <span class="method-name">close</span>
+                <span class="method-start">53235 ms</span>
+              </div> <!-- configuration-test after -->
+              <div class="configuration-test before">
+                <span class="method-name">beforeTest</span>
+                <span class="method-start">53388 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">addDesignListenerTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing.jar, TEST_DAG, group.t...)</span>
+                <span class="method-start">54026 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <span class="method-name">close</span>
+                <span class="method-start">76025 ms</span>
+              </div> <!-- configuration-test after -->
+              <div class="configuration-test before">
+                <span class="method-name">beforeTest</span>
+                <span class="method-start">76221 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">editDesignDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, TEST_DAG, testin...)</span>
+                <span class="method-start">77679 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <span class="method-name">close</span>
+                <span class="method-start">82475 ms</span>
+              </div> <!-- configuration-test after -->
+              <div class="configuration-test before">
+                <span class="method-name">beforeTest</span>
+                <span class="method-start">82634 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">compiledDagTest(http://localhost:8080/dagserver/cli/index.html, dagserver, dagserver, testing1.jar, generated_dag.ma...)</span>
+                <span class="method-start">83313 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-test after">
+                <span class="method-name">close</span>
+                <span class="method-start">87945 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

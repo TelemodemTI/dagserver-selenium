@@ -4,6 +4,10 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
 
 import dagserver.pom.authenticated.AuthenticatedView;
@@ -15,7 +19,7 @@ public class PropsTest extends BaseTest {
 
 		@Test
 		@Parameters({"url","username","pwd","propkey","propval","propgroup","filename"})
-		void propsTest(String url,String username, String pwd, String propkey, String propval, String propgroup,String filename) throws InterruptedException {
+		void propsTest(String url,String username, String pwd, String propkey, String propval, String propgroup,String filename,ITestContext context) throws InterruptedException, IOException {
 			driver.get(url);
 	    	LoginForm login = new LoginForm(driver);
 	    	if(login.login(username, pwd)) {
@@ -42,11 +46,14 @@ public class PropsTest extends BaseTest {
 	    			modalimport.importNewProp(filename);
 	    			view = autenticado.goToProps();
 	    			view.deleteByGroup(propgroup);
+	    			this.writeEvidence(context,"propsTest","OK",By.xpath("/html/body"));
 	    			assertTrue(true);
 	    		} else {
+	    			this.writeEvidence(context,"propsTest","ERROR",By.xpath("/html/body"));
 	    			assertTrue(false,"problema en vista de propiedades");
 	    		}
 	    	} else {
+	    		this.writeEvidence(context,"propsTest","ERROR",By.xpath("/html/body"));
 	    		assertTrue(false,"problema en login?");
 	    	}
 		}

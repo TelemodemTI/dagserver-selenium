@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="jobs"> 
+<suite name="jobs">
+	<listeners>
+        	<listener class-name="dagserver.utils.MyListener" />
+    </listeners> 
     <test name="systemJobsTest">
     	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -12,7 +15,7 @@
             </class>
         </classes>
     </test>
-    <!-- 
+    
     <test name="addDesignCronTest">
     	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -84,5 +87,5 @@
             </class>
         </classes>
     </test>
-     -->
+    
 </suite>

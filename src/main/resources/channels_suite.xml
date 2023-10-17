@@ -1,6 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="channel">
-	<!-- 
+	<listeners>
+        	<listener class-name="dagserver.utils.MyListener" />
+    </listeners>
     <test name="gitHubChannelTest">
     	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -25,7 +27,7 @@
             </class>
         </classes>
     </test>
-    -->
+    
      
 	<test name="redisChannelTest">
     	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  

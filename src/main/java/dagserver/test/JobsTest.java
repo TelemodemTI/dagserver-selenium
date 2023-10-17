@@ -2,6 +2,10 @@ package dagserver.test;
 
 import static org.testng.Assert.assertTrue;
 
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import dagserver.pom.authenticated.AuthenticatedView;
@@ -18,7 +22,7 @@ public class JobsTest extends BaseTest {
 
 	@Test
     @Parameters({"url","username","pwd"})
-	void systemJobsTest(String url,String username, String pwd) throws InterruptedException {
+	void systemJobsTest(String url,String username, String pwd,ITestContext context) throws InterruptedException, IOException {
 		driver.get(url);
     	LoginForm login = new LoginForm(driver);
     	if(login.login(username, pwd)) {
@@ -51,17 +55,19 @@ public class JobsTest extends BaseTest {
     			jobs.selectCompiledTab();
     			jobs.selectOption("background_system_dag", 3);
     			new DependenciesView(driver);
+    			this.writeEvidence(context,"systemJobsTest","OK",By.xpath("/html/body"));
     			assertTrue(true);
 			}
     	} else {
-    			assertTrue(false,"Jobs de sistema no incluidos?");
+    		this.writeEvidence(context,"systemJobsTest","ERROR",By.xpath("/html/body"));
+    		assertTrue(false,"Jobs de sistema no incluidos?");
     	}
    }
 	
 	
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","group","cronexpr","step1","step2"})
-	void addDesignCronTest(String url,String username, String pwd, String jarname,String dagname,String group,String cronexpr,String step1, String step2) throws InterruptedException {
+	void addDesignCronTest(String url,String username, String pwd, String jarname,String dagname,String group,String cronexpr,String step1, String step2,ITestContext context) throws InterruptedException, IOException {
 		driver.get(url);
     	LoginForm login = new LoginForm(driver);
     	if(login.login(username, pwd)) {
@@ -77,12 +83,16 @@ public class JobsTest extends BaseTest {
     		var params2 = newform.selectStage(step2);
     		params2.close();
     		newform.save();
+    		this.writeEvidence(context,"addDesignCronTest","OK",By.xpath("/html/body"));
     		assertTrue(true);
+    	} else {
+    		this.writeEvidence(context,"addDesignCronTest","ERROR",By.xpath("/html/body"));
+    		assertTrue(false,"no login?");
     	}
 	}
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","group","listenerType","triggerType","nameTarget","step1","step2"})
-	void addDesignListenerTest(String url,String username, String pwd, String jarname,String dagname,String group,String listenerType,String triggerType,String nameTarget,String step1, String step2) throws InterruptedException {
+	void addDesignListenerTest(String url,String username, String pwd, String jarname,String dagname,String group,String listenerType,String triggerType,String nameTarget,String step1, String step2,ITestContext context) throws InterruptedException, IOException {
 		driver.get(url);
     	LoginForm login = new LoginForm(driver);
     	if(login.login(username, pwd)) {
@@ -98,12 +108,16 @@ public class JobsTest extends BaseTest {
     		var params2 = newform.selectStage(step2);
     		params2.close();
     		newform.save();
+    		this.writeEvidence(context,"addDesignListenerTest","OK",By.xpath("/html/body"));
     		assertTrue(true);
+    	} else {
+    		this.writeEvidence(context,"addDesignListenerTest","ERROR",By.xpath("/html/body"));
+    		assertTrue(false,"no login?");
     	}
 	}
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","newjarname","stepname","uploadfile"})
-	void editDesignDagTest(String url,String username, String pwd,String jarname, String dagname, String newjarname,String stepname,String uploadfile) throws InterruptedException {
+	void editDesignDagTest(String url,String username, String pwd,String jarname, String dagname, String newjarname,String stepname,String uploadfile,ITestContext context) throws InterruptedException, IOException {
 		driver.get(url);
     	LoginForm login = new LoginForm(driver);
     	if(login.login(username, pwd)) {
@@ -137,11 +151,14 @@ public class JobsTest extends BaseTest {
     	    		jobs = autenticado.goToJobs();
     	    		jobs.selectDesigndTab();
     	    		jobs.compileDesign(newjarname);
+    	    		this.writeEvidence(context,"editDesignDagTest","OK",By.xpath("/html/body"));
     	    		assertTrue(true);
     			} else {
+    				this.writeEvidence(context,"editDesignDagTest","ERROR",By.xpath("/html/body"));
     				assertTrue(false,"problema en editor?");
     			}
     		} else {
+    			this.writeEvidence(context,"editDesignDagTest","ERROR",By.xpath("/html/body"));
     			assertTrue(false,"problema en diseñador?");
     		}
     	}
@@ -149,7 +166,7 @@ public class JobsTest extends BaseTest {
 	
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","logid","stepname"})
-	void compiledDagTest(String url,String username, String pwd, String jarname,String dagname,String logid,String stepname) throws InterruptedException {
+	void compiledDagTest(String url,String username, String pwd, String jarname,String dagname,String logid,String stepname,ITestContext context) throws InterruptedException, IOException {
 		driver.get(url);
     	LoginForm login = new LoginForm(driver);
     	if(login.login(username, pwd)) {
@@ -188,11 +205,14 @@ public class JobsTest extends BaseTest {
         			detail.selectTab();
         			var paramdialog = detail.selectStage(dagname, stepname);
         			paramdialog.close();
+        			this.writeEvidence(context,"compiledDagTest","OK",By.xpath("/html/body"));
         			assertTrue(true);
         		} else {
+        			this.writeEvidence(context,"compiledDagTest","ERROR",By.xpath("/html/body"));
         			assertTrue(false,"problema en scheduling?");
         		}
     		} else {
+    			this.writeEvidence(context,"compiledDagTest","ERROR",By.xpath("/html/body"));
     			assertTrue(false,"job no existe?");
     		}
     	}
