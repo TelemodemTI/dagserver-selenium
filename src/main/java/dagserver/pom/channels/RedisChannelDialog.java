@@ -36,6 +36,8 @@ public class RedisChannelDialog {
 
 	public void addListener(String string, String string2, String string3) throws InterruptedException {
 		driver.findElement(By.xpath("//*[@id=\"props-collapser-son-3\"]")).click();
+		WebDriverWait wait2 = new WebDriverWait(driver,3);
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"collapseNewListener\"]/div[1]/input")));
 		driver.findElement(By.xpath("//*[@id=\"collapseNewListener\"]/div[1]/input")).clear();
 		driver.findElement(By.xpath("//*[@id=\"collapseNewListener\"]/div[1]/input")).sendKeys(string);
 		

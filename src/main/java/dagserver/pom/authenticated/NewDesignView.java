@@ -3,6 +3,7 @@ package dagserver.pom.authenticated;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -78,9 +79,8 @@ public class NewDesignView {
         } else {
         	driver.findElement(By.xpath("//*[@id=\"optionslistenerGroup2\"]")).click();
         }
-        Thread.sleep(1000);
         
-
+        Thread.sleep(3000);
         Select select = new Select(driver.findElement(By.xpath("//*[contains(@id,'dagtargetinput-')]")));
         select.selectByValue(targetname);
         
@@ -111,7 +111,29 @@ public class NewDesignView {
 	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"param-modalexistingj\"]")));
 	     return new ParamsDialogNewJob(driver);
 	}
-	public void save() {
-		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div[2]/button[2]")).click();
+	public void goToTop() {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollTo(0, 0);"); 
+	}
+	public void save() throws InterruptedException {
+		this.goToTop();
+		By button = By.xpath("//*[@id=\"save-jar-btn\"]");
+		WebDriverWait wait = new WebDriverWait(driver,3);
+	    wait.until(ExpectedConditions.elementToBeClickable(button));
+		driver.findElement(button).click();
+	}
+	public void addStep(String dagname,String step1, String string) throws InterruptedException {
+		try {
+			WebDriverWait wait2 = new WebDriverWait(driver,3);
+	        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'stepinput-')]")));	
+		} catch (Exception e) {
+			Thread.sleep(1000);
+			driver.findElement(By.xpath("//*[@id=\"props-collapser-son\"]")).click();
+		}
+		Thread.sleep(3000);
+		WebElement combo = driver.findElement(By.xpath("//*[@id=\"steptype-"+dagname+"\"]"));
+		Select select = new Select(combo);
+		select.selectByValue(string);
+		driver.findElement(By.xpath("//*[@id=\"collapseOne"+dagname+"\"]/div/a")).click();		
 	}
 }

@@ -4,23 +4,9 @@
   <listeners>
     <listener class-name="dagserver.utils.MyListener"/>
   </listeners>
-  <test thread-count="5" name="logoutOkTest(failed)">
-    <parameter name="pwd" value="dagserver"/>
-    <parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>
-    <parameter name="username" value="dagserver"/>
-    <classes>
-      <class name="dagserver.test.LoginTest">
-        <methods>
-          <include name="close"/>
-          <include name="beforeTest"/>
-          <include name="logoutOk" invocation-numbers="0"/>
-        </methods>
-      </class> <!-- dagserver.test.LoginTest -->
-    </classes>
-  </test> <!-- logoutOkTest(failed) -->
   <test thread-count="5" name="loginNOkTest(failed)">
     <parameter name="pwd" value="dagserver1"/>
-    <parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>
+    <parameter name="url" value="http://localhost:8081"/>
     <parameter name="username" value="dagserver1"/>
     <classes>
       <class name="dagserver.test.LoginTest">

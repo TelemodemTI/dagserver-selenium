@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ParamsDialogNewJob {
@@ -16,10 +17,11 @@ public class ParamsDialogNewJob {
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"param-modalexistingj\"]")));
 	}
 
-	public void close() {
+	public void close() throws InterruptedException {
 		driver.findElement(By.xpath("//*[@id=\"param-modalexistingj\"]/div[2]/div/div[3]/button[2]")).click();
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"param-modalexistingj\"]")));
+        Thread.sleep(3000);
 	}
 	
 	public void remove() {
@@ -38,6 +40,23 @@ public class ParamsDialogNewJob {
 			return null;
 		}
 		
+	}
+	public void save() {
+		driver.findElement(By.xpath("//*[@id=\"param-modalexistingj\"]/div[2]/div/div[3]/button[3]")).click();
+		WebDriverWait wait2 = new WebDriverWait(driver,3);
+        wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"param-modalexistingj\"]")));
+	}
+	public void sendParameter(String name, String value, String type) {
+		String inputName = "//*[@id=\"param-"+name+"-value\"]";
+		WebDriverWait wait2 = new WebDriverWait(driver,3);
+        wait2.until(ExpectedConditions.elementToBeClickable(By.xpath(inputName)));
+		if(type.equals("input")) {
+			driver.findElement(By.xpath(inputName)).clear();
+			driver.findElement(By.xpath(inputName)).sendKeys(value);	
+		} else if(type.equals("list")) {
+			Select select = new Select(driver.findElement(By.xpath(inputName)));
+	        select.selectByValue(value);
+		}
 	}
 	private boolean isAlertPresent() 
 	{ 

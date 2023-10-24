@@ -1,0 +1,9 @@
+<suite name="allSuites">
+  <suite-files>
+    <suite-file path="suites/login_suite.xml" />
+    <suite-file path="suites/admin_suite.xml" />
+    <suite-file path="suites/props_suite.xml" />
+    <suite-file path="suites/channels_suite.xml" />
+    <suite-file path="suites/jobs_suite.xml" />
+  </suite-files>
+</suite>

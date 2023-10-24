@@ -73,6 +73,10 @@ public class JobsTest extends BaseTest {
     	if(login.login(username, pwd)) {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
+    		jobs.selectDesigndTab();
+    		if(jobs.existDesign(jarname)) {
+    			jobs.deleteDesign(jarname);
+    		}
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
     		newform.createCronDag(dagname, group, cronexpr);
@@ -98,6 +102,11 @@ public class JobsTest extends BaseTest {
     	if(login.login(username, pwd)) {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
+    		jobs.selectDesigndTab();
+    		if(jobs.existDesign(jarname)) {
+    			jobs.deleteDesign(jarname);
+    		}
+    		jobs.selectCompiledTab();
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
     		newform.createListenerDag(dagname, group,listenerType,triggerType,nameTarget);

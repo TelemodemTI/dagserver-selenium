@@ -20,4 +20,11 @@ public class ResultDialog {
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"result-step-modal\"]")));
 	}
+
+	public String getOutputXcom(String step1) {
+		driver.findElement(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")).click();
+		WebDriverWait wait2 = new WebDriverWait(driver,3);
+        wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"collapseOne-step1\"]/div/div")));
+        return driver.findElement(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")).getText();
+	}
 }

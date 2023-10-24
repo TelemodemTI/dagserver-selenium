@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="jobs">
 	<listeners>
-        	<listener class-name="dagserver.utils.MyListener" />
+        	<listener class-name="dagserver.utils.ReportListener" />
     </listeners> 
     <test name="systemJobsTest">
-    	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
+    	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
     	<parameter name="pwd" value="dagserver"/>  
         <classes>
@@ -15,9 +15,8 @@
             </class>
         </classes>
     </test>
-    
     <test name="addDesignCronTest">
-    	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
+    	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
     	<parameter name="pwd" value="dagserver"/>
     	<parameter name="jarname" value="testing.jar"/>  
@@ -34,8 +33,9 @@
             </class>
         </classes>
     </test>
+     
     <test name="addDesignListenerTest">
-    	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
+    	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
     	<parameter name="pwd" value="dagserver"/>
     	<parameter name="jarname" value="testing.jar"/>  
@@ -43,7 +43,7 @@
     	<parameter name="group" value="group.test"/>
     	<parameter name="listenerType" value="onEnd"/>
     	<parameter name="triggerType" value="GROUP"/>
-    	<parameter name="nameTarget" value="main.group"/>
+    	<parameter name="nameTarget" value="system_dags"/>
     	<parameter name="step1" value="step1"/>
     	<parameter name="step2" value="step2"/>
         <classes>
@@ -53,14 +53,15 @@
                 </methods>
             </class>
         </classes>
-     </test> 
+     </test>
+      
      <test name="editDesignDagTest">
-    	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
+    	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
     	<parameter name="pwd" value="dagserver"/>
-    	<parameter name="jarname" value="testing1.jar"/>
+    	<parameter name="jarname" value="testing.jar"/>
     	<parameter name="dagname" value="TEST_DAG"/>
-    	<parameter name="newjarname" value="testing2.jar"/>
+    	<parameter name="newjarname" value="testing1.jar"/>
     	<parameter name="stepname" value="step2"/>
     	<parameter name="uploadfile" value="c:\\tmp\\jarfile_json.json"/>
     	<classes>
@@ -72,7 +73,7 @@
         </classes>
     </test>
      <test name="compiledDagTest">
-    	<parameter name="url" value="http://localhost:8080/dagserver/cli/index.html"/>  
+    	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
     	<parameter name="pwd" value="dagserver"/>
     	<parameter name="jarname" value="testing1.jar"/>
@@ -87,5 +88,4 @@
             </class>
         </classes>
     </test>
-    
 </suite>
