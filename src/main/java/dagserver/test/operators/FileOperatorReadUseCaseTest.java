@@ -1,23 +1,20 @@
-package dagserver.test;
+package dagserver.test.operators;
 
+import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
+import java.io.IOException;
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import dagserver.pom.authenticated.AuthenticatedView;
+import dagserver.pom.authenticated.EditDesignView;
 import dagserver.pom.authenticated.JobsView;
 import dagserver.pom.login.LoginForm;
-import dagserver.utils.OperatorTestInterface;
+import dagserver.utils.BaseTest;
 
-public class FileOperatorTest extends OperatorTestInterface {
+public class FileOperatorReadUseCaseTest extends BaseTest {
 
-	@Override
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","group","cronexpr","step1"})
 	public void createDagDesignWithStepTest(String url,String username,String pwd,String jarname,String dagname,String group,String cronexpr,String step1,ITestContext context) throws Exception {
@@ -46,59 +43,30 @@ public class FileOperatorTest extends OperatorTestInterface {
 			assertTrue(false);
 		}
 	}
-
-	@Override
-	public void editDagDesignWithStepTest() {
-		// TODO Auto-generated method stub
-		
+	@Test
+    @Parameters({"url","username","pwd","jarname","dagname","step1"})
+	public void editDagDesignWithStepTest(String url,String username,String pwd,String jarname,String dagname, String step1,ITestContext context) throws InterruptedException, IOException {
+		driver.get(url);
+    	LoginForm login = new LoginForm(driver);
+    	if(login.login(username, pwd)) {
+    		AuthenticatedView autenticado = new AuthenticatedView(driver);
+    		JobsView jobs = autenticado.goToJobs();
+    		jobs.selectDesigndTab();
+    		if(jobs.existDesign(jarname)) {
+    			EditDesignView editor = jobs.editDesign(jarname);
+    			editor.selectDag(dagname);
+				var params = editor.selectStage(step1);
+				var result = params.test();
+				var contentPrc = result.getOutputXcom(step1);
+				this.writeEvidence(context,"editDagDesignWithStepTest","OK",By.xpath("/html/body"));
+		    	assertNotNull(contentPrc);
+    		} else {
+    			this.writeEvidence(context,"editDagDesignWithStepTest","ERROR",By.xpath("/html/body"));
+				assertTrue(false,"problema en editor?");
+    		}
+    	} else {
+			this.writeEvidence(context,"editDagDesignWithStepTest","ERROR",By.xpath("/html/body"));
+			assertTrue(false);
+		}
 	}
-
-	@Override
-	public void exportDagDesignWithStepTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteDagDesignWithStepTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void importDagDesignWithStepTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void compilateDagWithStepTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void executeCompilatedDagWithStepTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void viewCompilatedDagWithStepTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void scheduleCompilatedDagWithStepTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void unscheduleCompilatedDagWithStepTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

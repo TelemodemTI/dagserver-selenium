@@ -1,6 +1,7 @@
 package dagserver.pom.jobs;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -69,5 +70,14 @@ public class ParamsDialogNewJob {
 	    { 
 	        return false; 
 	    }   // catch 
+	}
+
+	public void sendScript(String script) {
+		driver.findElement(By.xpath("//*[@id=\"trigger-id\"]")).click();
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+	    String str = "$(\"#canvas-codemirror-new-det\").val(\""+script+"\");";
+	    js.executeScript(str);
+	    String str2 = "$(\"#canvas-codemirror-new-det\").trigger(\"change\");";
+	    js.executeScript(str2);
 	}
 }

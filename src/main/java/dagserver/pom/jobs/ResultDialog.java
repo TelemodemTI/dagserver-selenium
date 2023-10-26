@@ -11,7 +11,7 @@ public class ResultDialog {
 	
 	public ResultDialog(WebDriver driver) {
 		this.driver = driver;
-		WebDriverWait wait2 = new WebDriverWait(driver,3);
+		WebDriverWait wait2 = new WebDriverWait(driver,10);
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"result-step-modal\"]")));
 	}
 
@@ -24,7 +24,7 @@ public class ResultDialog {
 	public String getOutputXcom(String step1) {
 		driver.findElement(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")).click();
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
-        wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"collapseOne-step1\"]/div/div")));
-        return driver.findElement(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")).getText();
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")));
+        return driver.findElement(By.xpath("//*[@id=\"collapseOne-step1\"]/div/div")).getText();
 	}
 }
