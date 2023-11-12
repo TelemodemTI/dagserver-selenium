@@ -1,6 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ssh_operator_execute_suite">
     
+    <listeners>
+        	<listener class-name="dagserver.utils.ReportListener" />
+    </listeners>
+    
     <test name="createDagDesignWithStepTest">
     	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -9,13 +13,7 @@
     	<parameter name="dagname" value="TEST_DAG"/>
     	<parameter name="group" value="group.test"/>
     	<parameter name="cronexpr" value="0 0/1 * * * ?"/>
-    	<parameter name="step1" value="step1"/>
-    	
-    	<parameter name="host" value="54.214.161.162"/>
-    	<parameter name="port" value="22"/>
-    	<parameter name="user" value="ec2-user"/>
-    	<parameter name="knowhostfile" value="c:\tmp\knowhost.key"/>
-    	<parameter name="privateKeyFile" value="c:\tmp\private.ppk"/>
+    	<parameter name="step1" value="step1"/> 
     	<parameter name="cmd" value="pwd"/>
         <classes>
             <class name="dagserver.test.operators.SshOperatorExecUseCaseTest">

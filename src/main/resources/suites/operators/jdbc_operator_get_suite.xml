@@ -1,6 +1,10 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="jdbc_operator_get_suite">
     
+    <listeners>
+        	<listener class-name="dagserver.utils.ReportListener" />
+    </listeners>
+    
     <test name="createDagDesignWithStepTest">
     	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -10,12 +14,6 @@
     	<parameter name="group" value="group.test"/>
     	<parameter name="cronexpr" value="0 0/1 * * * ?"/>
     	<parameter name="step1" value="step1"/>
-    	<parameter name="jdbcurl" value="jdbc:mysql://localhost:3306/sakila?useSSL=false"/>
-    	<parameter name="jdbcuser" value="root"/>
-    	<parameter name="jdbcpwd" value="password"/>
-    	<parameter name="jdbcdriver" value="com.mysql.cj.jdbc.Driver"/>
-    	<parameter name="jdbcdriverPath" value="C:\Program Files (x86)\MySQL\Connector J 8.0\mysql-connector-java-8.0.26.jar"/>
-    	<parameter name="sql" value="SELECT * FROM sakila.actor"/>
         <classes>
             <class name="dagserver.test.operators.JdbcOperatorGetUseCaseTest">
                 <methods>

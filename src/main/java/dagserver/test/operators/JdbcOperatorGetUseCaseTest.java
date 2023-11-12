@@ -31,12 +31,13 @@ public class JdbcOperatorGetUseCaseTest extends BaseTest {
     		newform.setName(jarname);
     		newform.createCronDag(dagname, group, cronexpr);
     		newform.addStep(dagname,step1,"main.cl.dagserver.infra.adapters.operators.JdbcOperator");    		
-    		var urlj = context.getCurrentXmlTest().getParameter("jdbcurl");
-    		var user = context.getCurrentXmlTest().getParameter("jdbcuser");
-    		var pwdj = context.getCurrentXmlTest().getParameter("jdbcpwd");
-    		var driver = context.getCurrentXmlTest().getParameter("jdbcdriver");
-    		var script = context.getCurrentXmlTest().getParameter("sql");
-    		var driverPath = context.getCurrentXmlTest().getParameter("jdbcdriverPath");
+    		
+    		var urlj = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcurl");
+    		var user = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcuser");
+    		var pwdj = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcpwd");
+    		var driver = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriver");
+    		var script = this.getInfrastructure(this.getClass().getCanonicalName(), "sql");
+    		var driverPath = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriverPath");
     		var params = newform.selectStage(step1);
     		params.sendParameter("url", urlj, "input");
     		params.sendParameter("user", user, "input");
@@ -45,6 +46,7 @@ public class JdbcOperatorGetUseCaseTest extends BaseTest {
     		params.sendParameter("driverPath", driverPath, "input");
     		params.sendScript(script);
     		params.save();
+    		jobs.selectDesigndTab();
     		this.writeEvidence(context,"createDagDesignWithStepTest","OK",By.xpath("/html/body"));
     		assertTrue(true);
     	} else {

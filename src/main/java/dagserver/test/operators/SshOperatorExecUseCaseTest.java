@@ -2,14 +2,11 @@ package dagserver.test.operators;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-
 import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import dagserver.pom.authenticated.AuthenticatedView;
 import dagserver.pom.authenticated.EditDesignView;
 import dagserver.pom.authenticated.JobsView;
@@ -17,6 +14,7 @@ import dagserver.pom.login.LoginForm;
 import dagserver.utils.BaseTest;
 
 public class SshOperatorExecUseCaseTest extends BaseTest {
+
 	
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","group","cronexpr","step1"})
@@ -31,20 +29,23 @@ public class SshOperatorExecUseCaseTest extends BaseTest {
     		newform.setName(jarname);
     		newform.createCronDag(dagname, group, cronexpr);
     		newform.addStep(dagname,step1,"main.cl.dagserver.infra.adapters.operators.SshOperator");    		
-    		var host = context.getCurrentXmlTest().getParameter("host");
-    		var user = context.getCurrentXmlTest().getParameter("user");
-    		var port = context.getCurrentXmlTest().getParameter("port");
     		var cmd = context.getCurrentXmlTest().getParameter("cmd");
-    		var knowhostfile = context.getCurrentXmlTest().getParameter("knowhostfile");
-    		var privateKeyFile = context.getCurrentXmlTest().getParameter("privateKeyFile");
+    		var host = this.getInfrastructure(this.getClass().getCanonicalName(), "host");
+    		var port = this.getInfrastructure(this.getClass().getCanonicalName(), "port");
+        	var user = this.getInfrastructure(this.getClass().getCanonicalName(), "user");
+        	var password = this.getInfrastructure(this.getClass().getCanonicalName(), "password");
+        	var knowhostfile = this.getInfrastructure(this.getClass().getCanonicalName(), "knowhostfile");
+        	var privateKeyFile = this.getInfrastructure(this.getClass().getCanonicalName(), "privateKeyFile");
     		var params = newform.selectStage(step1);
     		params.sendParameter("host", host, "input");
     		params.sendParameter("user", user, "input");
+    		params.sendParameter("password", password, "input");
     		params.sendParameter("knowhostfile", knowhostfile, "input");
     		params.sendParameter("port", port, "input");
     		params.sendParameter("privateKeyFile", privateKeyFile, "input");
     		params.sendScript(cmd);
     		params.save();
+    		jobs.selectDesigndTab();
     		this.writeEvidence(context,"createDagDesignWithStepTest","OK",By.xpath("/html/body"));
     		assertTrue(true);
     	} else {

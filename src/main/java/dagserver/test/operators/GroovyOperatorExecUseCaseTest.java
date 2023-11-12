@@ -35,6 +35,7 @@ public class GroovyOperatorExecUseCaseTest extends BaseTest {
     		var params = newform.selectStage(step1);
     		params.sendScript(cmd);
     		params.save();
+    		jobs.selectDesigndTab();
     		this.writeEvidence(context,"createDagDesignWithStepTest","OK",By.xpath("/html/body"));
     		assertTrue(true);
     	} else {

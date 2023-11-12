@@ -2,19 +2,22 @@ package dagserver.test.operators;
 
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
+
 import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
 import dagserver.pom.authenticated.AuthenticatedView;
 import dagserver.pom.authenticated.EditDesignView;
 import dagserver.pom.authenticated.JobsView;
 import dagserver.pom.login.LoginForm;
 import dagserver.utils.BaseTest;
 
-public class FileOperatorReadUseCaseTest extends BaseTest {
-
+public class RabbitOperatorExecUseCaseTest extends BaseTest {
+	
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","group","cronexpr","step1"})
 	public void createDagDesignWithStepTest(String url,String username,String pwd,String jarname,String dagname,String group,String cronexpr,String step1,ITestContext context) throws Exception {
@@ -27,14 +30,30 @@ public class FileOperatorReadUseCaseTest extends BaseTest {
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
     		newform.createCronDag(dagname, group, cronexpr);
-    		newform.addStep(dagname,step1,"main.cl.dagserver.infra.adapters.operators.FileOperator");
+    		newform.addStep(dagname,step1,"main.cl.dagserver.infra.adapters.operators.RabbitMQOperator");    		
     		var params = newform.selectStage(step1);
-    		var mode = context.getCurrentXmlTest().getParameter("mode");
-    		var filepath = this.getInfrastructure(this.getClass().getCanonicalName(),"filepath");
-    		var delimiter = context.getCurrentXmlTest().getParameter("rowdelimitr");
-    		params.sendParameter("mode", mode, "list");
-    		params.sendParameter("filepath", filepath,"input");
-    		params.sendParameter("rowDelimiter", delimiter,"input");
+    		var moder = context.getCurrentXmlTest().getParameter("mode");
+    		var bodyr = context.getCurrentXmlTest().getParameter("body");
+    		
+    		var hostr = this.getInfrastructure(this.getClass().getCanonicalName(), "host");
+    		var usernamer = this.getInfrastructure(this.getClass().getCanonicalName(), "username");
+    		var passwordr = this.getInfrastructure(this.getClass().getCanonicalName(), "password");
+    		var portr = this.getInfrastructure(this.getClass().getCanonicalName(), "port");
+    		var exchange = this.getInfrastructure(this.getClass().getCanonicalName(), "exchange");
+    		var routingKey = this.getInfrastructure(this.getClass().getCanonicalName(), "routingKey");
+    		var queue = this.getInfrastructure(this.getClass().getCanonicalName(), "queue");
+    		
+    		
+    		params.sendParameter("host", hostr, "input");
+    		params.sendParameter("username", usernamer, "input");
+    		params.sendParameter("password", passwordr, "input");
+    		params.sendParameter("port", portr, "input");
+    		params.sendParameter("exchange", exchange, "input");
+    		params.sendParameter("routingKey", routingKey, "input");
+    		params.sendParameter("queue", queue, "input");
+    		params.sendParameter("mode", moder, "list");
+    		
+    		params.sendScript(bodyr);
     		params.save();
     		jobs.selectDesigndTab();
     		this.writeEvidence(context,"createDagDesignWithStepTest","OK",By.xpath("/html/body"));
@@ -44,6 +63,8 @@ public class FileOperatorReadUseCaseTest extends BaseTest {
 			assertTrue(false);
 		}
 	}
+	
+	
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","step1"})
 	public void editDagDesignWithStepTest(String url,String username,String pwd,String jarname,String dagname, String step1,ITestContext context) throws InterruptedException, IOException {
@@ -70,4 +91,5 @@ public class FileOperatorReadUseCaseTest extends BaseTest {
 			assertTrue(false);
 		}
 	}
+	
 }

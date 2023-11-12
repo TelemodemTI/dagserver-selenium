@@ -2,16 +2,16 @@
 <testng-results ignored="2" total="4" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-10-26T18:38:39 CLST" name="groovy_operator_execute_suite" finished-at="2023-10-26T18:39:07 CLST" duration-ms="28325">
+  <suite started-at="2023-11-12T09:25:02 CLST" name="http_operator_execute_suite" finished-at="2023-11-12T09:25:36 CLST" duration-ms="34383">
     <groups>
     </groups>
-    <test started-at="2023-10-26T18:38:39 CLST" name="createDagDesignWithStepTest" finished-at="2023-10-26T18:38:58 CLST" duration-ms="18702">
-      <class name="dagserver.test.operators.GroovyOperatorExecUseCaseTest">
-        <test-method is-config="true" signature="beforeTest()[pri:0, instance:dagserver.test.operators.GroovyOperatorExecUseCaseTest@2ef3eef9]" started-at="2023-10-26T18:38:39 CLST" name="beforeTest" finished-at="2023-10-26T18:38:40 CLST" duration-ms="1314" status="PASS">
+    <test started-at="2023-11-12T09:25:02 CLST" name="createDagDesignWithStepTest" finished-at="2023-11-12T09:25:28 CLST" duration-ms="25875">
+      <class name="dagserver.test.operators.HttpOperatorExecUseCaseTest">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:dagserver.test.operators.HttpOperatorExecUseCaseTest@d8305c2]" started-at="2023-11-12T09:25:02 CLST" name="beforeTest" finished-at="2023-11-12T09:25:04 CLST" duration-ms="2235" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method signature="createDagDesignWithStepTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:dagserver.test.operators.GroovyOperatorExecUseCaseTest@2ef3eef9]" started-at="2023-10-26T18:38:40 CLST" name="createDagDesignWithStepTest" finished-at="2023-10-26T18:38:58 CLST" duration-ms="17208" status="PASS">
+        <test-method signature="createDagDesignWithStepTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:dagserver.test.operators.HttpOperatorExecUseCaseTest@d8305c2]" started-at="2023-11-12T09:25:04 CLST" name="createDagDesignWithStepTest" finished-at="2023-11-12T09:25:27 CLST" duration-ms="23468" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -30,7 +30,7 @@
             </param>
             <param index="3">
               <value>
-                <![CDATA[groovy_operator_exec.jar]]>
+                <![CDATA[http_operator_exec.jar]]>
               </value>
             </param>
             <param index="4">
@@ -55,26 +55,26 @@
             </param>
             <param index="8">
               <value>
-                <![CDATA[org.testng.TestRunner@2472c7d8]]>
+                <![CDATA[org.testng.TestRunner@1640190a]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createDagDesignWithStepTest -->
-        <test-method is-config="true" signature="close()[pri:0, instance:dagserver.test.operators.GroovyOperatorExecUseCaseTest@2ef3eef9]" started-at="2023-10-26T18:38:58 CLST" name="close" finished-at="2023-10-26T18:38:58 CLST" duration-ms="148" status="PASS">
+        <test-method is-config="true" signature="close()[pri:0, instance:dagserver.test.operators.HttpOperatorExecUseCaseTest@d8305c2]" started-at="2023-11-12T09:25:27 CLST" name="close" finished-at="2023-11-12T09:25:28 CLST" duration-ms="146" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
-      </class> <!-- dagserver.test.operators.GroovyOperatorExecUseCaseTest -->
+      </class> <!-- dagserver.test.operators.HttpOperatorExecUseCaseTest -->
     </test> <!-- createDagDesignWithStepTest -->
-    <test started-at="2023-10-26T18:38:58 CLST" name="editDagDesignWithStepTest" finished-at="2023-10-26T18:39:07 CLST" duration-ms="9613">
-      <class name="dagserver.test.operators.GroovyOperatorExecUseCaseTest">
-        <test-method is-config="true" signature="beforeTest()[pri:0, instance:dagserver.test.operators.GroovyOperatorExecUseCaseTest@5fdcaa40]" started-at="2023-10-26T18:38:58 CLST" name="beforeTest" finished-at="2023-10-26T18:38:58 CLST" duration-ms="611" status="PASS">
+    <test started-at="2023-11-12T09:25:28 CLST" name="editDagDesignWithStepTest" finished-at="2023-11-12T09:25:36 CLST" duration-ms="8498">
+      <class name="dagserver.test.operators.HttpOperatorExecUseCaseTest">
+        <test-method is-config="true" signature="beforeTest()[pri:0, instance:dagserver.test.operators.HttpOperatorExecUseCaseTest@2fea7088]" started-at="2023-11-12T09:25:28 CLST" name="beforeTest" finished-at="2023-11-12T09:25:28 CLST" duration-ms="716" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method signature="editDagDesignWithStepTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:dagserver.test.operators.GroovyOperatorExecUseCaseTest@5fdcaa40]" started-at="2023-10-26T18:38:58 CLST" name="editDagDesignWithStepTest" finished-at="2023-10-26T18:39:07 CLST" duration-ms="8901" status="PASS">
+        <test-method signature="editDagDesignWithStepTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.testng.ITestContext)[pri:0, instance:dagserver.test.operators.HttpOperatorExecUseCaseTest@2fea7088]" started-at="2023-11-12T09:25:28 CLST" name="editDagDesignWithStepTest" finished-at="2023-11-12T09:25:36 CLST" duration-ms="7552" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -93,7 +93,7 @@
             </param>
             <param index="3">
               <value>
-                <![CDATA[groovy_operator_exec.jar]]>
+                <![CDATA[http_operator_exec.jar]]>
               </value>
             </param>
             <param index="4">
@@ -108,18 +108,18 @@
             </param>
             <param index="6">
               <value>
-                <![CDATA[org.testng.TestRunner@72e789cb]]>
+                <![CDATA[org.testng.TestRunner@7da34b26]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- editDagDesignWithStepTest -->
-        <test-method is-config="true" signature="close()[pri:0, instance:dagserver.test.operators.GroovyOperatorExecUseCaseTest@5fdcaa40]" started-at="2023-10-26T18:39:07 CLST" name="close" finished-at="2023-10-26T18:39:07 CLST" duration-ms="99" status="PASS">
+        <test-method is-config="true" signature="close()[pri:0, instance:dagserver.test.operators.HttpOperatorExecUseCaseTest@2fea7088]" started-at="2023-11-12T09:25:36 CLST" name="close" finished-at="2023-11-12T09:25:36 CLST" duration-ms="226" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
-      </class> <!-- dagserver.test.operators.GroovyOperatorExecUseCaseTest -->
+      </class> <!-- dagserver.test.operators.HttpOperatorExecUseCaseTest -->
     </test> <!-- editDagDesignWithStepTest -->
-  </suite> <!-- groovy_operator_execute_suite -->
+  </suite> <!-- http_operator_execute_suite -->
 </testng-results>

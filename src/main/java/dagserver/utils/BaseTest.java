@@ -2,12 +2,15 @@ package dagserver.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.By;
@@ -16,6 +19,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+
+import dagserver.test.operators.FileOperatorReadUseCaseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
@@ -23,6 +28,7 @@ public class BaseTest {
 	protected ScreenShootUtils screen;
 	protected String screenpath;
 	protected SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+
 	@BeforeTest
 	protected void beforeTest() throws EncryptedDocumentException, IOException{
 		WebDriverManager.chromedriver().setup();
@@ -61,5 +67,12 @@ public class BaseTest {
 		list.add(data);
 		context.getSuite().setAttribute("dataOutput",list);
 		
+	}
+	
+	protected String getInfrastructure(String className, String key) throws IOException {
+		Properties properties = new Properties();
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("infra.properties");
+        properties.load(inputStream);
+        return properties.getProperty(className+"."+key);
 	}
 }
