@@ -21,43 +21,40 @@ public class NewDesignView {
 		driver.findElement(jarname).clear();
 		driver.findElement(jarname).sendKeys(name);
 	}
-	public void createCronDag(String dagname, String group, String cronexpr) throws InterruptedException {
+	public DagTabPanelView generate() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 0);");
+        
+        WebDriverWait wait = new WebDriverWait(driver,3);
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div[2]/button[1]")));
+        
 		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div[2]/button[1]")).click();
-		
-		WebDriverWait wait2 = new WebDriverWait(driver,5);
-        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'dagnameinput-')]")));
-        
-        
-        driver.findElement(By.xpath("//*[contains(@id,'dagnameinput-')]")).clear();
-        driver.findElement(By.xpath("//*[contains(@id,'dagnameinput-')]")).sendKeys(dagname);
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[contains(@id,'canvas-')]/a")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"props-collapser\"]")).click();
-        driver.findElement(By.xpath("//*[@id=\"props-collapser\"]")).click();
-        Thread.sleep(1000);
-        
-
-        
-        driver.findElement(By.xpath("//*[contains(@id,'daggroupinput-')]")).clear();
-        driver.findElement(By.xpath("//*[contains(@id,'daggroupinput-')]")).sendKeys(group);
-        driver.findElement(By.xpath("//*[contains(@id,'dagcroninput-')]")).clear();
-        driver.findElement(By.xpath("//*[contains(@id,'dagcroninput-')]")).sendKeys(cronexpr);
-        driver.findElement(By.xpath("//*[contains(@id,'collapseOne')]/div[4]/button[1]")).click();
+		return new DagTabPanelView(driver);
 	}
-	public void createListenerDag(String dagname, String group, String listener, String targetType, String targetname) throws InterruptedException {
-		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div[2]/button[1]")).click();
+	public DagTabPanelView createDefaultDag() throws InterruptedException {
+		var tab = this.generate();
+		tab.save();
+		return tab;
+	}
+	public DagTabPanelView createCronDag(String dagname, String group, String cronexpr) throws InterruptedException {
+		var dagpanel = this.generate();
+        dagpanel.setData(dagname, group, cronexpr);
+        dagpanel.save();
+        return dagpanel;
+	}
+	public DagTabPanelView createListenerDag(String dagname, String group, String listener, String targetType, String targetname) throws InterruptedException {
 		
-		WebDriverWait wait2 = new WebDriverWait(driver,5);
-        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'dagnameinput-')]")));
-        
+		var dagpanel = this.generate();
+
         driver.findElement(By.xpath("//*[contains(@id,'dagnameinput-')]")).clear();
         driver.findElement(By.xpath("//*[contains(@id,'dagnameinput-')]")).sendKeys(dagname);
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[contains(@id,'canvas-')]/a")).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"props-collapser\"]")).click();
-        driver.findElement(By.xpath("//*[@id=\"props-collapser\"]")).click();
+        
+        driver.findElement(By.xpath("//*[contains(@id,'props-collapser')]/a")).click();
+        driver.findElement(By.xpath("//*[contains(@id,'props-collapser')]/a")).click();
+        
         Thread.sleep(1000);
         
         
@@ -83,22 +80,22 @@ public class NewDesignView {
         Thread.sleep(3000);
         Select select = new Select(driver.findElement(By.xpath("//*[contains(@id,'dagtargetinput-')]")));
         select.selectByValue(targetname);
+        return dagpanel;
         
-        driver.findElement(By.xpath("//*[contains(@id,'collapseOne')]/div[4]/button[1]")).click();
 	}
-	public void addDummyStep(String stepname) throws InterruptedException {
+	public void addDummyStep(String stepname,String dagname) throws InterruptedException {
 		
 		try {
 			WebDriverWait wait2 = new WebDriverWait(driver,3);
-	        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@id,'stepinput-')]")));	
+	        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[id='stepinput-"+dagname+"']")));	
 		} catch (Exception e) {
 			Thread.sleep(1000);
-			driver.findElement(By.xpath("//*[@id=\"props-collapser-son\"]")).click();
+			driver.findElement(By.xpath("//*[@id=\"props-collapser-son-"+dagname+"\"]")).click();
 		}
 		Thread.sleep(3000);
-        driver.findElement(By.xpath("//*[contains(@id,'stepinput-')]")).clear();
-        driver.findElement(By.xpath("//*[contains(@id,'stepinput-')]")).sendKeys(stepname);
-        driver.findElement(By.xpath("//*[contains(@id,'collapseOne')]/div/div[4]/button[1]")).click();
+        driver.findElement(By.xpath("//*[@id='stepinput-"+dagname+"']")).clear();
+        driver.findElement(By.xpath("//*[@id='stepinput-"+dagname+"']")).sendKeys(stepname);
+        driver.findElement(By.xpath("//*[@id='collapseOne"+dagname+"']/div/div[4]/button[1]")).click();
 	}
 	
 	public ParamsDialogNewJob selectStage(String stepName) {

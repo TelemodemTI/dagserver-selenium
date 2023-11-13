@@ -18,4 +18,19 @@
             </class>
         </classes>
     </test>
+    <test name="deleteUserTest">
+    	<parameter name="url" value="http://localhost:8081"/>  
+    	<parameter name="username" value="dagserver"/>  
+    	<parameter name="pwd" value="dagserver"/>  
+    	<parameter name="newusername" value="dagserver2"/>  
+    	<parameter name="newpwd" value="dagserver2"/>
+    	<parameter name="newaccountType" value="USER"/>  
+        <classes>
+            <class name="dagserver.test.AdminTest">
+                <methods>
+                    <include name="deleteUser" />
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

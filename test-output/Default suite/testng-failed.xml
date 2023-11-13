@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="dagserver.test.operators.GroovyOperatorExecUseCaseTest">
+      <class name="dagserver.test.JobsTest">
         <methods>
-          <include name="editDagDesignWithStepTest"/>
           <include name="close"/>
+          <include name="multipleDagsTest"/>
           <include name="beforeTest"/>
         </methods>
-      </class> <!-- dagserver.test.operators.GroovyOperatorExecUseCaseTest -->
+      </class> <!-- dagserver.test.JobsTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

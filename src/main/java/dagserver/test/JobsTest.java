@@ -79,11 +79,11 @@ public class JobsTest extends BaseTest {
     		}
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
-    		newform.createCronDag(dagname, group, cronexpr);
-    		newform.addDummyStep(step1);
+    		var dagpanel = newform.createCronDag(dagname, group, cronexpr);
+    		newform.addDummyStep(step1,dagpanel.getName());
     		var params = newform.selectStage(step1);
     		params.remove();
-    		newform.addDummyStep(step2);
+    		newform.addDummyStep(step2,dagpanel.getName());
     		var params2 = newform.selectStage(step2);
     		params2.close();
     		newform.save();
@@ -109,11 +109,12 @@ public class JobsTest extends BaseTest {
     		jobs.selectCompiledTab();
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
-    		newform.createListenerDag(dagname, group,listenerType,triggerType,nameTarget);
-    		newform.addDummyStep(step1);
+    		var panel = newform.createListenerDag(dagname, group,listenerType,triggerType,nameTarget);
+    		panel.save();
+    		newform.addDummyStep(step1,panel.getName());
     		var params = newform.selectStage(step1);
     		params.remove();
-    		newform.addDummyStep(step2);
+    		newform.addDummyStep(step2,panel.getName());
     		var params2 = newform.selectStage(step2);
     		params2.close();
     		newform.save();
@@ -224,6 +225,31 @@ public class JobsTest extends BaseTest {
     			this.writeEvidence(context,"compiledDagTest","ERROR",By.xpath("/html/body"));
     			assertTrue(false,"job no existe?");
     		}
+    	}
+	}
+	@Test
+	@Parameters({"url","username","pwd","jarname","dagname","group","cronexpr","step1"})
+	void multipleDagsCreateTest(String url, String username, String pwd, String jarname,String dagname,String group,String cronexpr,String step1, ITestContext context) throws InterruptedException, IOException {
+		driver.get(url);
+    	LoginForm login = new LoginForm(driver);
+    	if(login.login(username, pwd)) {
+    		AuthenticatedView autenticado = new AuthenticatedView(driver);
+    		JobsView jobs = autenticado.goToJobs();
+    		jobs.selectDesigndTab();
+    		var newform = jobs.newJobForm();
+    		newform.setName(jarname);
+    		var dagpanel1 = newform.generate();
+    		newform.addDummyStep(step1,dagpanel1.getName());
+    		var dagpanel2 = newform.generate();
+    		dagpanel2.activate();
+    		dagpanel2.activate();
+    		newform.addDummyStep(step1,dagpanel2.getName());
+    		newform.save();
+    		this.writeEvidence(context,"multipleDagsCreateTest","OK",By.xpath("/html/body"));
+    		assertTrue(true);
+    	} else {
+    		this.writeEvidence(context,"multipleDagsCreateTest","ERROR",By.xpath("/html/body"));
+    		assertTrue(false,"no login?");
     	}
 	}
 }

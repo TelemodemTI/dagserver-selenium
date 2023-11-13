@@ -41,4 +41,30 @@ public class AdminTest extends BaseTest {
     		}
     	}
 	}
+	@Test
+	@Parameters({"url","username","pwd","newusername","newpwd","newaccountType"}) 
+	void deleteUserTest(String url,String username, String pwd,String newusername, String newpwd, String newaccountType,ITestContext context) throws SeleniumTestException, IOException {
+		driver.get(url);
+    	LoginForm login = new LoginForm(driver);
+    	if(login.login(username, pwd)) {
+    		AuthenticatedView autenticado = new AuthenticatedView(driver);
+    		AdminCredentialsView credentials = autenticado.goToCredentials();
+    		if(credentials.existCredential(newusername)) {
+    			credentials.deleteUser(newusername);
+    			credentials = autenticado.goToCredentials();
+    		}
+    		NewUserDialog newuserDialog = credentials.addUser();
+    		newuserDialog.saveNewUser(newusername, newpwd, newaccountType);
+    		credentials = autenticado.goToCredentials();
+    		if(credentials.existCredential(newusername)) {
+    			credentials.deleteUser(newusername);
+    			credentials = autenticado.goToCredentials();
+    			this.writeEvidence(context,"deleteUser","OK",By.xpath("/html/body"));
+    			assertTrue(true);
+    		} else {
+    			this.writeEvidence(context,"deleteUser","ERROR",By.xpath("/html/body"));
+    			assertTrue(false,"Cuenta de usuario no agregada");
+    		}
+    	}
+	}
 }
