@@ -4,11 +4,12 @@
   <listeners>
     <listener class-name="dagserver.utils.ReportListener"/>
   </listeners>
-  <test thread-count="5" name="multipleDagsTest(failed)">
-    <parameter name="dagname" value="generated_dag.main.TEST_DAG"/>
+  <test thread-count="5" name="addDesignCronTest(failed)">
+    <parameter name="dagname" value="TEST_DAG"/>
     <parameter name="cronexpr" value="0 0/1 * * * ?"/>
-    <parameter name="jarname" value="testing1.jar"/>
+    <parameter name="jarname" value="testing.jar"/>
     <parameter name="pwd" value="dagserver"/>
+    <parameter name="step2" value="step2"/>
     <parameter name="url" value="http://localhost:8081"/>
     <parameter name="username" value="dagserver"/>
     <parameter name="group" value="group.test"/>
@@ -16,11 +17,11 @@
     <classes>
       <class name="dagserver.test.JobsTest">
         <methods>
+          <include name="addDesignCronTest" invocation-numbers="0"/>
           <include name="close"/>
-          <include name="multipleDagsTest" invocation-numbers="0"/>
           <include name="beforeTest"/>
         </methods>
       </class> <!-- dagserver.test.JobsTest -->
     </classes>
-  </test> <!-- multipleDagsTest(failed) -->
+  </test> <!-- addDesignCronTest(failed) -->
 </suite> <!-- Failed suite [jobs] -->

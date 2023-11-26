@@ -38,6 +38,7 @@ public class NewDesignView {
 	}
 	public DagTabPanelView createCronDag(String dagname, String group, String cronexpr) throws InterruptedException {
 		var dagpanel = this.generate();
+//		dagpanel.activate();
         dagpanel.setData(dagname, group, cronexpr);
         dagpanel.save();
         return dagpanel;
@@ -45,7 +46,7 @@ public class NewDesignView {
 	public DagTabPanelView createListenerDag(String dagname, String group, String listener, String targetType, String targetname) throws InterruptedException {
 		
 		var dagpanel = this.generate();
-
+		dagpanel.activate();
         driver.findElement(By.xpath("//*[contains(@id,'dagnameinput-')]")).clear();
         driver.findElement(By.xpath("//*[contains(@id,'dagnameinput-')]")).sendKeys(dagname);
         Thread.sleep(1000);

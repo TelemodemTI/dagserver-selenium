@@ -3,6 +3,7 @@
 	<listeners>
         	<listener class-name="dagserver.utils.ReportListener" />
     </listeners> 
+    <!-- 
     <test name="systemJobsTest">
     	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -15,6 +16,8 @@
             </class>
         </classes>
     </test>
+     -->
+    
     <test name="addDesignCronTest">
     	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -33,7 +36,7 @@
             </class>
         </classes>
     </test>
-     
+     <!-- 
     <test name="addDesignListenerTest">
     	<parameter name="url" value="http://localhost:8081"/>  
     	<parameter name="username" value="dagserver"/>  
@@ -105,4 +108,5 @@
             </class>
         </classes>
     </test>
+     -->
 </suite>

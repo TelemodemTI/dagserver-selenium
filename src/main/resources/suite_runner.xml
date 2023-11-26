@@ -5,5 +5,19 @@
     <suite-file path="suites/props_suite.xml" />
     <suite-file path="suites/channels_suite.xml" />
     <suite-file path="suites/jobs_suite.xml" />
+    <suite-file path="suites/operators/cmd_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/file_operator_read_suite.xml" />
+    <suite-file path="suites/operators/ftp_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/groovy_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/http_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/java_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/jdbc_operator_get_suite.xml" />
+    <suite-file path="suites/operators/mail_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/mongodb_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/samba2_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/testng_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/rabbitmq_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/redis_operator_exec_suite.xml" />
+    <suite-file path="suites/operators/ssh_operator_get_suite.xml" />
   </suite-files>
 </suite>

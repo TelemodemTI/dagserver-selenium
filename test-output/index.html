@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-jobs" class="navigator-link">
-              <span class="suite-name border-passed">jobs</span>
+              <span class="suite-name border-failed">jobs</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -93,7 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">0 methods,   </span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-jobs" class="hide-methods failed suite-jobs"> (hide)</a> <!-- hide-methods failed suite-jobs -->
+                      <a href="#" panel-name="suite-jobs" class="show-methods failed suite-jobs"> (show)</a> <!-- show-methods failed suite-jobs -->
+                    </span>
+                    <div class="method-list-content failed suite-jobs">
+                      <span>
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-jobs" title="dagserver.test.JobsTest" class="method navigator-link" hash-for-method="addDesignCronTest(http://localhost:8081, dagserver, dagserver, testing.jar, TEST_DAG, group.test, 0 0/1 * * * ?, step1...)">addDesignCronTest(http://localhost:8081, dagserver, dagserver, testing.jar, TEST_DAG, group.test, 0 0/1 * * * ?, step1...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-jobs -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -105,6 +119,47 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-jobs" class="panel jobs">
+          <div class="suite-jobs-class-failed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="failed.png"/>
+              <span class="class-name">dagserver.test.JobsTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="addDesignCronTest(http://localhost:8081, dagserver, dagserver, testing.jar, TEST_DAG, group.test, 0 0/1 * * * ?, step1...)">
+                  </a> <!-- addDesignCronTest(http://localhost:8081, dagserver, dagserver, testing.jar, TEST_DAG, group.test, 0 0/1 * * * ?, step1...) -->
+                  <span class="method-name">addDesignCronTest</span>
+                  <span class="parameters">(http://localhost:8081, dagserver, dagserver, testing.jar, TEST_DAG, group.test, 0 0/1 * * * ?, step1, step2, org.testng.TestRunner@7569ea63)</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//*[@id=&apos;daggroupinput-DAG_A5DwAF&apos;]&quot;}
+  (Session info: chrome=119.0.6045.124)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:17:03&apos;
+System info: host: &apos;LAPTOP-K61ULR8P&apos;, ip: &apos;172.31.32.1&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 119.0.6045.124, chrome: {chromedriverVersion: 119.0.6045.105 (38c72552c5e..., userDataDir: C:\Users\diego\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:54305}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 70de11bc467c85ceb14ee94386293cc5
+*** Element info: {Using=xpath, value=//*[@id=&apos;daggroupinput-DAG_A5DwAF&apos;]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at dagserver.pom.authenticated.DagTabPanelView.setData(DagTabPanelView.java:43)
+	at dagserver.pom.authenticated.NewDesignView.createCronDag(NewDesignView.java:42)
+	at dagserver.test.JobsTest.addDesignCronTest(JobsTest.java:82)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+... Removed 32 stack frames
+</div> <!-- stack-trace -->
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-jobs-class-failed -->
         </div> <!-- panel jobs -->
         <div panel-name="test-xml-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -118,11 +173,12 @@
   &lt;listeners&gt;
     &lt;listener class-name=&quot;dagserver.utils.ReportListener&quot;/&gt;
   &lt;/listeners&gt;
-  &lt;test thread-count=&quot;5&quot; name=&quot;multipleDagsTest&quot;&gt;
-    &lt;parameter name=&quot;dagname&quot; value=&quot;generated_dag.main.TEST_DAG&quot;/&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;addDesignCronTest&quot;&gt;
+    &lt;parameter name=&quot;dagname&quot; value=&quot;TEST_DAG&quot;/&gt;
     &lt;parameter name=&quot;cronexpr&quot; value=&quot;0 0/1 * * * ?&quot;/&gt;
-    &lt;parameter name=&quot;jarname&quot; value=&quot;testing1.jar&quot;/&gt;
+    &lt;parameter name=&quot;jarname&quot; value=&quot;testing.jar&quot;/&gt;
     &lt;parameter name=&quot;pwd&quot; value=&quot;dagserver&quot;/&gt;
+    &lt;parameter name=&quot;step2&quot; value=&quot;step2&quot;/&gt;
     &lt;parameter name=&quot;url&quot; value=&quot;http://localhost:8081&quot;/&gt;
     &lt;parameter name=&quot;username&quot; value=&quot;dagserver&quot;/&gt;
     &lt;parameter name=&quot;group&quot; value=&quot;group.test&quot;/&gt;
@@ -130,11 +186,11 @@
     &lt;classes&gt;
       &lt;class name=&quot;dagserver.test.JobsTest&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;multipleDagsTest&quot;/&gt;
+          &lt;include name=&quot;addDesignCronTest&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- dagserver.test.JobsTest --&gt;
     &lt;/classes&gt;
-  &lt;/test&gt; &lt;!-- multipleDagsTest --&gt;
+  &lt;/test&gt; &lt;!-- addDesignCronTest --&gt;
 &lt;/suite&gt; &lt;!-- jobs --&gt;
             </pre>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -146,7 +202,7 @@
           <div class="main-panel-content rounded-window-bottom">
             <ul>
               <li>
-                <span class="test-name">multipleDagsTest (1 class)</span>
+                <span class="test-name">addDesignCronTest (1 class)</span>
               </li>
             </ul>
           </div> <!-- main-panel-content rounded-window-bottom -->
@@ -172,12 +228,16 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(0);
+data.addRows(1);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'addDesignCronTest')
+data.setCell(0, 2, 'dagserver.test.JobsTest')
+data.setCell(0, 3, 11843);
 window.suiteTableData['jobs']= { tableData: data, tableDiv: 'times-div-jobs'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 0 ms</span>
+              <span class="suite-total-time">Total running time: 11 seconds</span>
               <div id="times-div-jobs">
               </div> <!-- times-div-jobs -->
             </div> <!-- times-div -->
@@ -192,7 +252,7 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-jobs" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">6 ignored methods</span>
+            <span class="header-content">5 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
@@ -201,8 +261,6 @@ return data;
                 <span class="ignored-method-name">addDesignListenerTest</span>
                 <br/>
                 <span class="ignored-method-name">multipleDagsCreateTest</span>
-                <br/>
-                <span class="ignored-method-name">addDesignCronTest</span>
                 <br/>
                 <span class="ignored-method-name">editDesignDagTest</span>
                 <br/>
@@ -225,9 +283,15 @@ return data;
                 <span class="method-name">beforeTest</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">addDesignCronTest(http://localhost:8081, dagserver, dagserver, testing.jar, TEST_DAG, group.test, 0 0/1 * * * ?, step1...)</span>
+                <span class="method-start">1530 ms</span>
+              </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">close</span>
-                <span class="method-start">1859 ms</span>
+                <span class="method-start">13408 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
