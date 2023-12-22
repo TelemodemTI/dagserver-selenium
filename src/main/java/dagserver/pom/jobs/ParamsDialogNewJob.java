@@ -30,12 +30,16 @@ public class ParamsDialogNewJob {
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"param-modalexistingj\"]")));
 	}
-	public ResultDialog test() {
+	public ResultDialog test() throws InterruptedException {
 		driver.findElement(By.xpath("//*[@id=\"param-modalexistingj\"]/div[2]/div/div[2]/div[1]/button[2]")).click();
 		if(this.isAlertPresent()) {
+			
 			driver.switchTo().alert().accept();
+			Thread.sleep(3000);
+			
 			WebDriverWait wait2 = new WebDriverWait(driver,3);
-	        wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"result-step-modal\"]")));
+			wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"result-step-modal\"]/div[2]/div/div[2]/div[1]")));
+			
 	        return new ResultDialog(driver);
 		} else {
 			return null;

@@ -66,7 +66,7 @@ public class InputChannelTest extends BaseTest  {
     			channel = autenticado.goToInputChannels();
         		modal = channel.rabbitModal();
         		if(!modal.existQueue("queue")) {
-        			this.writeEvidence(context,"rabbitChannelTest","ERROR",By.xpath("/html/body"));
+        			this.writeEvidence(context,"rabbitChannelTest","OK",By.xpath("/html/body"));
         			assertTrue(true);
         		} else {
         			this.writeEvidence(context,"rabbitChannelTest","ERROR",By.xpath("/html/body"));

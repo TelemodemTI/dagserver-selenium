@@ -140,7 +140,8 @@ public class JobsView {
 		return null;
 	}
 	
-	public NewDesignView newJobForm() {
+	public NewDesignView newJobForm() throws InterruptedException {
+		Thread.sleep(3000);
 		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/a")).click();
 		return new NewDesignView(driver); 
 	}

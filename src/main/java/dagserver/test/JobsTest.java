@@ -3,11 +3,13 @@ package dagserver.test;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
 import dagserver.pom.authenticated.AuthenticatedView;
 import dagserver.pom.authenticated.DependenciesView;
 import dagserver.pom.authenticated.EditDesignView;
@@ -110,7 +112,7 @@ public class JobsTest extends BaseTest {
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
     		var panel = newform.createListenerDag(dagname, group,listenerType,triggerType,nameTarget);
-    		panel.save();
+    		panel.save(dagname);
     		newform.addDummyStep(step1,panel.getName());
     		var params = newform.selectStage(step1);
     		params.remove();
@@ -128,6 +130,12 @@ public class JobsTest extends BaseTest {
 	@Test
     @Parameters({"url","username","pwd","jarname","dagname","newjarname","stepname","uploadfile"})
 	void editDesignDagTest(String url,String username, String pwd,String jarname, String dagname, String newjarname,String stepname,String uploadfile,ITestContext context) throws InterruptedException, IOException {
+		String uploadFileReal = "";
+		if(this.application.getProperty("driver.mode").equals("DOCKER")) {
+			uploadFileReal = "/statics/"+uploadfile;
+		} else {
+			uploadFileReal = Paths.get("statics").toAbsolutePath().toString() + "/" +uploadfile;	
+		}
 		driver.get(url);
     	LoginForm login = new LoginForm(driver);
     	if(login.login(username, pwd)) {
@@ -145,7 +153,9 @@ public class JobsTest extends BaseTest {
     				jobs.selectDesigndTab();
     				EditDesignView editor2 = jobs.editDesign(newjarname);
     				editor2.selectDag(dagname);
-    				var params = editor2.selectStage(stepname);
+    				
+    				var params = editor2.selectStage(stepname,dagname);
+    				Thread.sleep(2000);
     				var result = params.test();
     				result.close();
     				jobs = autenticado.goToJobs();
@@ -157,7 +167,7 @@ public class JobsTest extends BaseTest {
     	    		jobs.selectDesigndTab();
     	    		
     	    		var importer = jobs.importJar();
-    	    		importer.importNewJob(uploadfile);
+    	    		importer.importNewJob(uploadFileReal);
     	    		jobs = autenticado.goToJobs();
     	    		jobs.selectDesigndTab();
     	    		jobs.compileDesign(newjarname);

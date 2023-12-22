@@ -41,6 +41,7 @@ public class AdminTest extends BaseTest {
     		}
     	}
 	}
+	
 	@Test
 	@Parameters({"url","username","pwd","newusername","newpwd","newaccountType"}) 
 	void deleteUserTest(String url,String username, String pwd,String newusername, String newpwd, String newaccountType,ITestContext context) throws SeleniumTestException, IOException {

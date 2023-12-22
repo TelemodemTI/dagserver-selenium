@@ -11,8 +11,14 @@ public class ResultDialog {
 	
 	public ResultDialog(WebDriver driver) {
 		this.driver = driver;
-		WebDriverWait wait2 = new WebDriverWait(driver,10);
-        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"result-step-modal\"]")));
+		try {
+			WebDriverWait wait2 = new WebDriverWait(driver,10);
+			wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"result-step-modal\"]/div[2]/div/div[2]/div[1]")));	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
 	}
 
 	public void close() {
@@ -21,7 +27,8 @@ public class ResultDialog {
         wait2.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"result-step-modal\"]")));
 	}
 
-	public String getOutputXcom(String step1) {
+	public String getOutputXcom(String step1) throws InterruptedException {
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")).click();
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")));

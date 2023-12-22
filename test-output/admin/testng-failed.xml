@@ -4,16 +4,17 @@
   <test thread-count="5" name="createUserTest(failed)">
     <parameter name="newusername" value="dagserver1"/>
     <parameter name="newpwd" value="dagserver1"/>
+    <parameter name="chromeDriverUrl" value="http://localhost:4444/wd/hub"/>
     <parameter name="newaccountType" value="USER"/>
     <parameter name="pwd" value="dagserver"/>
-    <parameter name="url" value="http://localhost:8080/dagserver/cli"/>
+    <parameter name="url" value="http://dagserver.host:8081"/>
     <parameter name="username" value="dagserver"/>
     <classes>
       <class name="dagserver.test.AdminTest">
         <methods>
           <include name="createUser" invocation-numbers="0"/>
-          <include name="beforeSuite"/>
           <include name="close"/>
+          <include name="beforeTest"/>
         </methods>
       </class> <!-- dagserver.test.AdminTest -->
     </classes>

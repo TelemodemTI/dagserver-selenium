@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="dagserver.test.JobsTest">
+      <class name="dagserver.test.operators.FileOperatorReadUseCaseTest">
         <methods>
+          <include name="editDagDesignWithStepTest"/>
+          <include name="createDagDesignWithStepTest"/>
           <include name="close"/>
-          <include name="multipleDagsTest"/>
           <include name="beforeTest"/>
         </methods>
-      </class> <!-- dagserver.test.JobsTest -->
+      </class> <!-- dagserver.test.operators.FileOperatorReadUseCaseTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -1,73 +1,89 @@
 package dagserver.utils;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Base64;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
-import dagserver.test.operators.FileOperatorReadUseCaseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 	protected WebDriver driver;
 	protected ScreenShootUtils screen;
-	protected String screenpath;
 	protected SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-
-	@BeforeTest
-	protected void beforeTest() throws EncryptedDocumentException, IOException{
-		WebDriverManager.chromedriver().setup();
-		driver = new ChromeDriver();
+	protected Properties application;
+	
+	@BeforeMethod
+	@Parameters({"chromeDriverUrl"})
+	protected void beforeTest(String chromeDriverUrl) throws EncryptedDocumentException, IOException{
+		
+		this.application = new Properties();
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("application.properties");
+        this.application.load(inputStream);
+		if(this.application.getProperty("driver.mode").equals("DOCKER")) {
+			URL url = new URL(chromeDriverUrl);
+			ChromeOptions options = new ChromeOptions(); 
+			driver = new RemoteWebDriver(url,options);	
+		} else {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();	
+		}
+		driver.manage().window().maximize();
 		screen = new ScreenShootUtils();
-		this.screenpath = "C:\\tmp\\test\\";
 	}
-	@AfterTest
+	@AfterMethod
     protected void close() throws IOException {
 		driver.quit();
 	}
 	
-	public String saveScreenshoot(String tag,By xpath) throws IOException {
+	
+  protected void writeEvidence(ITestContext context, String testName, String status, By xpath) throws IOException {
+	  var screenshot = this.getScreenshoot(testName+"-"+status,xpath);
+	  Map<String,byte[]> map = new HashMap<>();
+	  map.put(testName+"-"+status,screenshot);
+	  this.reportScreen(map);
+  }
+
+  protected void reportScreen(Map<String,byte[]> fileContent) {
+     Reporter.log("Fotos tomadas durante la prueba<br>");
+     var screens = fileContent.keySet();
+     List<String> list = new ArrayList<>(screens);
+     Collections.sort(list, Collections.reverseOrder());
+     for (Iterator<String> iterator = list.iterator(); iterator.hasNext();) {
+	   String string = iterator.next();
+	   var content = fileContent.get(string);
+	   String encodedString = Base64.getEncoder().encodeToString(content);
+	   String title = "<b>"+string+"</b><br>";
+	   String path = title + "<img src=\"data:image/png;base64, " + encodedString + "\" width=\"700\" height=\"480\" /><br>";
+	   Reporter.log(path);
+     }   
+    }
+	
+	protected byte[] getScreenshoot(String tag,By xpath) throws IOException {
 		var bytes = this.screen.takeScreenShotAllPage(driver,xpath);
-		String identifier = ScreenShootUtils.generateIdentifier(10);
-		String filename = screenpath + identifier + "_" + sdf.format(new Date()) + "_" + tag + ".png";
-		FileUtils.writeByteArrayToFile(new File(filename), bytes);
-		return filename;
+		return bytes;
+		
 	}
 	
-	public void writeEvidence(ITestContext context,String name, String status, By target) throws IOException {
-		var classname = this.getClass().toString();
-		String filename = this.saveScreenshoot(name, target);
-		Map<String,String> data = new HashMap<String,String>();
-		data.put("name", name);
-		data.put("classname", classname);
-		data.put("status", status);
-		data.put("screenshoot", filename);
-		
-		List<Map<String, String>> list = null;
-		if(context.getSuite().getAttribute("dataOutput") != null) {
-			list = (List<Map<String, String>>) context.getSuite().getAttribute("dataOutput");
-		} else {
-			list = new ArrayList<>();
-		}
-		list.add(data);
-		context.getSuite().setAttribute("dataOutput",list);
-		
-	}
 	
 	protected String getInfrastructure(String className, String key) throws IOException {
 		Properties properties = new Properties();

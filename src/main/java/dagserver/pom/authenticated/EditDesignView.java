@@ -28,14 +28,13 @@ public class EditDesignView {
 			return null;
 		} else {
 			WebDriverWait wait2 = new WebDriverWait(driver,3);
-	        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"result-step-modal\"]")));
+			wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"result-step-modal\"]/div[2]/div/div[2]/div[1]")));
 	        return new ResultDialog(driver);
 		}
 	}
-	public void selectDag(String dagname) {
+	public void selectDag(String dagname) throws InterruptedException {
 		driver.findElement(By.xpath("//*[@id=\"canvas-"+dagname+"\"]/a")).click();
-		WebDriverWait wait2 = new WebDriverWait(driver,3);
-        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"props-collapser\"]")));
+		Thread.sleep(1000);
 	}
 	
 	private boolean isAlertPresent() 
@@ -54,7 +53,11 @@ public class EditDesignView {
 		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div/button[3]")).click();
 		return new RenameJarDialog(driver);
 	} 
-	public ParamsDialogNewJob selectStage(String stepName) {
+	public ParamsDialogNewJob selectStage(String stepName,String dagname) throws InterruptedException {
+		
+		
+		 driver.findElement(By.xpath("//*[@id=\"canvas-"+dagname+"\"]/a"));
+		 Thread.sleep(1000);
 		 JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 	     String str = "$(\"#canvas-new-det\").val(\"{\\\"stepname\\\":\\\""+stepName+"\\\"}\");";
 	     jsExecutor.executeScript(str);

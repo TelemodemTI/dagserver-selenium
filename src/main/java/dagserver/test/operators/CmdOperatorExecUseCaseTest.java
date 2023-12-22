@@ -27,6 +27,9 @@ public class CmdOperatorExecUseCaseTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		if(jobs.existDesign(jarname)) {
+    			jobs.deleteDesign(jarname);
+    		}
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
     		newform.createCronDag(dagname, group, cronexpr);
@@ -57,8 +60,7 @@ public class CmdOperatorExecUseCaseTest extends BaseTest {
     		if(jobs.existDesign(jarname)) {
     			EditDesignView editor = jobs.editDesign(jarname);
     			editor.selectDag(dagname);
-				var params = editor.selectStage(step1);
-				var result = params.test();
+				var result = editor.execute();
 				var contentPrc = result.getOutputXcom(step1);
 				this.writeEvidence(context,"editDagDesignWithStepTest","OK",By.xpath("/html/body"));
 		    	assertNotNull(contentPrc);
