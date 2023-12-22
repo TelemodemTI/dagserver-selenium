@@ -4,6 +4,7 @@ import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
@@ -27,11 +28,20 @@ public class TestNGOperatorExecUseCaseTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		if(jobs.existDesign(jarname)) {
+    			jobs.deleteDesign(jarname);
+    		}
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
     		newform.createCronDag(dagname, group, cronexpr);
     		newform.addStep(dagname,step1,"main.cl.dagserver.infra.adapters.operators.TestNGOperator");    		
-    		var classpath = this.getInfrastructure(this.getClass().getCanonicalName(), "classpath");
+    		var classvar = this.getInfrastructure(this.getClass().getCanonicalName(), "classpath");
+    		String classpath = "";
+    		if(this.application.getProperty("driver.mode").equals("DOCKER")) {
+    			classpath = "/statics/"+classvar;
+    		} else {
+    			classpath = Paths.get("statics").toAbsolutePath().toString() + "/" +classvar;
+    		}
     		var reportOutput = this.getInfrastructure(this.getClass().getCanonicalName(), "reportOutput");
     		var testngXmlFiles = this.getInfrastructure(this.getClass().getCanonicalName(), "testngXmlFiles");
     		var params = newform.selectStage(step1);
@@ -61,8 +71,7 @@ public class TestNGOperatorExecUseCaseTest extends BaseTest {
     		if(jobs.existDesign(jarname)) {
     			EditDesignView editor = jobs.editDesign(jarname);
     			editor.selectDag(dagname);
-				var params = editor.selectStage(step1,dagname);
-				var result = params.test();
+    			var result = editor.execute();
 				var contentPrc = result.getOutputXcom(step1);
 				this.writeEvidence(context,"editDagDesignWithStepTest","OK",By.xpath("/html/body"));
 		    	assertNotNull(contentPrc);

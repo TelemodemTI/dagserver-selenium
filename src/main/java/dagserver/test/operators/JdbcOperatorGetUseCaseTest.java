@@ -4,6 +4,7 @@ import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
@@ -27,6 +28,9 @@ public class JdbcOperatorGetUseCaseTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		if(jobs.existDesign(jarname)) {
+    			jobs.deleteDesign(jarname);
+    		}
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
     		newform.createCronDag(dagname, group, cronexpr);
@@ -35,7 +39,13 @@ public class JdbcOperatorGetUseCaseTest extends BaseTest {
     		var urlj = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcurl");
     		var user = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcuser");
     		var pwdj = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcpwd");
-    		var driver = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriver");
+    		var drivervar = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriver");
+    		String driver = "";
+    		if(this.application.getProperty("driver.mode").equals("DOCKER")) {
+    			driver = "/statics/"+drivervar;
+    		} else {
+    			driver = Paths.get("statics").toAbsolutePath().toString() + "/" +drivervar;
+    		}
     		var script = this.getInfrastructure(this.getClass().getCanonicalName(), "sql");
     		var driverPath = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriverPath");
     		var params = newform.selectStage(step1);
@@ -68,8 +78,7 @@ public class JdbcOperatorGetUseCaseTest extends BaseTest {
     		if(jobs.existDesign(jarname)) {
     			EditDesignView editor = jobs.editDesign(jarname);
     			editor.selectDag(dagname);
-				var params = editor.selectStage(step1,dagname);
-				var result = params.test();
+    			var result = editor.execute();
 				var contentPrc = result.getOutputXcom(step1);
 				this.writeEvidence(context,"editDagDesignWithStepTest","OK",By.xpath("/html/body"));
 		    	assertNotNull(contentPrc);

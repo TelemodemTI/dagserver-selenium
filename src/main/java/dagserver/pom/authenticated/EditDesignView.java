@@ -27,7 +27,7 @@ public class EditDesignView {
 			driver.switchTo().alert().accept();
 			return null;
 		} else {
-			WebDriverWait wait2 = new WebDriverWait(driver,3);
+			WebDriverWait wait2 = new WebDriverWait(driver,30);
 			wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"result-step-modal\"]/div[2]/div/div[2]/div[1]")));
 	        return new ResultDialog(driver);
 		}

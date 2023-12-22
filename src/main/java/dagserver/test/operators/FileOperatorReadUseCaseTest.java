@@ -3,6 +3,8 @@ package dagserver.test.operators;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import java.io.IOException;
+import java.nio.file.Paths;
+
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
@@ -33,7 +35,13 @@ public class FileOperatorReadUseCaseTest extends BaseTest {
     		newform.addStep(dagname,step1,"main.cl.dagserver.infra.adapters.operators.FileOperator");
     		var params = newform.selectStage(step1);
     		var mode = context.getCurrentXmlTest().getParameter("mode");
-    		var filepath = this.getInfrastructure(this.getClass().getCanonicalName(),"filepath");
+    		var filevar = this.getInfrastructure(this.getClass().getCanonicalName(),"filepath");
+    		String filepath = "";
+    		if(this.application.getProperty("driver.mode").equals("DOCKER")) {
+    			filepath = "/statics/"+filevar;
+    		} else {
+    			filepath = Paths.get("statics").toAbsolutePath().toString() + "/" +filevar;
+    		}
     		var delimiter = context.getCurrentXmlTest().getParameter("rowdelimitr");
     		params.sendParameter("mode", mode, "list");
     		params.sendParameter("filepath", filepath,"input");

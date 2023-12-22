@@ -3,6 +3,8 @@ package dagserver.test.operators;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import java.io.IOException;
+import java.nio.file.Paths;
+
 import org.openqa.selenium.By;
 import org.testng.ITestContext;
 import org.testng.annotations.Parameters;
@@ -25,6 +27,9 @@ public class SshOperatorExecUseCaseTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		if(jobs.existDesign(jarname)) {
+    			jobs.deleteDesign(jarname);
+    		}
     		var newform = jobs.newJobForm();
     		newform.setName(jarname);
     		newform.createCronDag(dagname, group, cronexpr);
@@ -34,12 +39,23 @@ public class SshOperatorExecUseCaseTest extends BaseTest {
     		var port = this.getInfrastructure(this.getClass().getCanonicalName(), "port");
         	var user = this.getInfrastructure(this.getClass().getCanonicalName(), "user");
         	var password = this.getInfrastructure(this.getClass().getCanonicalName(), "password");
-        	var knowhostfile = this.getInfrastructure(this.getClass().getCanonicalName(), "knowhostfile");
-        	var privateKeyFile = this.getInfrastructure(this.getClass().getCanonicalName(), "privateKeyFile");
-    		var params = newform.selectStage(step1);
+        	var knowhostvar = this.getInfrastructure(this.getClass().getCanonicalName(), "knowhostfile");
+        	var privateKeyvar = this.getInfrastructure(this.getClass().getCanonicalName(), "privateKeyFile");
+        	String knowhostfile = "";
+        	String privateKeyFile = "";
+    		if(this.application.getProperty("driver.mode").equals("DOCKER")) {
+    			knowhostfile = "/statics/"+knowhostvar;
+    			privateKeyFile = "/statics/"+privateKeyvar;
+    		} else {
+    			knowhostfile = Paths.get("statics").toAbsolutePath().toString() + "/" +knowhostvar;
+    			privateKeyFile = Paths.get("statics").toAbsolutePath().toString() + "/" +privateKeyvar;
+    		}
+        	
+        	
+        	var params = newform.selectStage(step1);
     		params.sendParameter("host", host, "input");
     		params.sendParameter("user", user, "input");
-    		params.sendParameter("password", password, "input");
+    		params.sendParameter("pwd", password, "input");
     		params.sendParameter("knowhostfile", knowhostfile, "input");
     		params.sendParameter("port", port, "input");
     		params.sendParameter("privateKeyFile", privateKeyFile, "input");
@@ -67,8 +83,7 @@ public class SshOperatorExecUseCaseTest extends BaseTest {
     		if(jobs.existDesign(jarname)) {
     			EditDesignView editor = jobs.editDesign(jarname);
     			editor.selectDag(dagname);
-				var params = editor.selectStage(step1,dagname);
-				var result = params.test();
+    			var result = editor.execute();
 				var contentPrc = result.getOutputXcom(step1);
 				this.writeEvidence(context,"editDagDesignWithStepTest","OK",By.xpath("/html/body"));
 		    	assertNotNull(contentPrc);
