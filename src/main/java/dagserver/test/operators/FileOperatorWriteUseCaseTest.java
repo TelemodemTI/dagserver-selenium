@@ -58,8 +58,9 @@ public class FileOperatorWriteUseCaseTest extends BaseTest {
     		params.sendParameter("xcom", step1,"list");
     		params.save();
     		
-    		editor2.save();
+    		
     		this.writeEvidence(context,"createDagDesignWithStepTest","OK",By.xpath("/html/body"));
+    		editor2.save();
     		assertTrue(true);
     	} else {
 			this.writeEvidence(context,"createDagDesignWithStepTest","ERROR",By.xpath("/html/body"));

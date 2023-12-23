@@ -1,0 +1,41 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="http_operator_GET_suite">
+   
+    <test name="createDagDesignWithStepTest">
+    	<parameter name="chromeDriverUrl" value="http://localhost:4444/wd/hub"/>
+    	<parameter name="url" value="http://192.168.1.27:8081/"/>      
+    	<parameter name="username" value="dagserver"/>  
+    	<parameter name="pwd" value="dagserver"/>
+    	<parameter name="jarname" value="http_operator_exec.jar"/>  
+    	<parameter name="dagname" value="TEST_DAG"/>
+    	<parameter name="group" value="group.test"/>
+    	<parameter name="cronexpr" value="0 0/1 * * * ?"/>
+    	<parameter name="step1" value="step1"/>
+    	<parameter name="timeout" value="5000"/>
+        <classes>
+            <class name="dagserver.test.operators.HttpOperatorGETUseCaseTest">
+                <methods>
+                    <include name="createDagDesignWithStepTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+      
+    <test name="editDagDesignWithStepTest">
+    	<parameter name="chromeDriverUrl" value="http://localhost:4444/wd/hub"/>
+    	<parameter name="url" value="http://192.168.1.27:8081/"/>     
+    	<parameter name="username" value="dagserver"/>  
+    	<parameter name="pwd" value="dagserver"/>   
+    	<parameter name="jarname" value="http_operator_exec.jar"/>  
+    	<parameter name="dagname" value="TEST_DAG"/>
+    	<parameter name="step1" value="step1"/> 
+        <classes>
+            <class name="dagserver.test.operators.HttpOperatorGETUseCaseTest">
+                <methods>
+                    <include name="editDagDesignWithStepTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+    
+</suite>

@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="samba2_operator_execute_suite">
+<suite name="samba2_operator_list_suite">
 
      
     <test name="createDagDesignWithStepTest">
@@ -13,7 +13,7 @@
     	<parameter name="cronexpr" value="0 0/1 * * * ?"/>
     	<parameter name="step1" value="step1"/>
         <classes>
-            <class name="dagserver.test.operators.Samba2OperatorExecUseCaseTest">
+            <class name="dagserver.test.operators.Samba2OperatorListUseCaseTest">
                 <methods>
                     <include name="createDagDesignWithStepTest" />
                 </methods>
@@ -30,7 +30,7 @@
     	<parameter name="dagname" value="TEST_DAG"/>
     	<parameter name="step1" value="step1"/> 
         <classes>
-            <class name="dagserver.test.operators.Samba2OperatorExecUseCaseTest">
+            <class name="dagserver.test.operators.Samba2OperatorListUseCaseTest">
                 <methods>
                     <include name="editDagDesignWithStepTest" />
                 </methods>

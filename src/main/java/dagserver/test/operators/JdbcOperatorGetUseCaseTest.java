@@ -39,15 +39,16 @@ public class JdbcOperatorGetUseCaseTest extends BaseTest {
     		var urlj = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcurl");
     		var user = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcuser");
     		var pwdj = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcpwd");
-    		var drivervar = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriver");
-    		String driver = "";
+    		var drivervar = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriverPath");
+    		var driver = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriver");
+    		String driverPath = "";
     		if(this.application.getProperty("driver.mode").equals("DOCKER")) {
-    			driver = "/statics/"+drivervar;
+    			driverPath = "/statics/"+drivervar;
     		} else {
-    			driver = Paths.get("statics").toAbsolutePath().toString() + "/" +drivervar;
+    			driverPath = Paths.get("statics").toAbsolutePath().toString() + "/" +drivervar;
     		}
     		var script = this.getInfrastructure(this.getClass().getCanonicalName(), "sql");
-    		var driverPath = this.getInfrastructure(this.getClass().getCanonicalName(), "jdbcdriverPath");
+    		
     		var params = newform.selectStage(step1);
     		params.sendParameter("url", urlj, "input");
     		params.sendParameter("user", user, "input");

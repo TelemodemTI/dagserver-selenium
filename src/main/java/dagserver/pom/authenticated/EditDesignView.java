@@ -84,6 +84,9 @@ public class EditDesignView {
 	}
 	public void save() throws InterruptedException {
 		Thread.sleep(3000);
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollTo(0, 0);"); 
+		
 		WebDriverWait wait = new WebDriverWait(driver,3);
 	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div/button[2]")));
 		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div/button[2]")).click();
