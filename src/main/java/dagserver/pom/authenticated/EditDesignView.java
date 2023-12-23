@@ -4,7 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import dagserver.pom.jobs.ParamsDialogNewJob;
@@ -14,6 +16,7 @@ import dagserver.pom.jobs.ResultDialog;
 public class EditDesignView {
 
 	protected WebDriver driver;
+	protected Boolean opened = false;
 	protected By jarname = By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div[1]/div/input");
 	protected By createDagButton = By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div[2]/button[1]");
 	public EditDesignView(WebDriver driver) {
@@ -54,8 +57,6 @@ public class EditDesignView {
 		return new RenameJarDialog(driver);
 	} 
 	public ParamsDialogNewJob selectStage(String stepName,String dagname) throws InterruptedException {
-		
-		
 		 driver.findElement(By.xpath("//*[@id=\"canvas-"+dagname+"\"]/a"));
 		 Thread.sleep(1000);
 		 JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -66,5 +67,26 @@ public class EditDesignView {
 	     WebDriverWait wait = new WebDriverWait(driver,3);
 	     wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"param-modalexistingj\"]")));
 	     return new ParamsDialogNewJob(driver);
+	}
+	public void addStep(String dagname,String step1, String string) throws InterruptedException {
+		if(opened == false) {
+			driver.findElement(By.xpath("//*[@id=\"props-collapser-son-"+dagname+"\"]")).click();
+			opened = true;
+		}
+		Thread.sleep(3000);
+		
+		driver.findElement(By.xpath("//*[@id=\"stepinput-"+dagname+"\"]")).clear();
+		driver.findElement(By.xpath("//*[@id=\"stepinput-"+dagname+"\"]")).sendKeys(step1);
+		WebElement combo = driver.findElement(By.xpath("//*[@id=\"steptype-"+dagname+"\"]"));
+		Select select = new Select(combo);
+		select.selectByValue(string);
+		driver.findElement(By.xpath("//*[@id=\"collapseOne"+dagname+"\"]/div/a")).click();		
+	}
+	public void save() throws InterruptedException {
+		Thread.sleep(3000);
+		WebDriverWait wait = new WebDriverWait(driver,3);
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div/button[2]")));
+		driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/div[1]/div/button[2]")).click();
+		Thread.sleep(2000);
 	}
 }

@@ -7,6 +7,7 @@
     <suite-file path="suites/jobs_suite.xml" />
     <suite-file path="suites/operators/cmd_operator_exec_suite.xml" />
     <suite-file path="suites/operators/file_operator_read_suite.xml" />
+    <suite-file path="suites/operators/file_operator_write_suite.xml" />
     <suite-file path="suites/operators/groovy_operator_exec_suite.xml" />
     <suite-file path="suites/operators/http_operator_exec_suite.xml" />
     <suite-file path="suites/operators/java_operator_exec_suite.xml" />
