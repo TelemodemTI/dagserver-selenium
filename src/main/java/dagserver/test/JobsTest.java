@@ -76,6 +76,7 @@ public class JobsTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		if(jobs.existDesign(jarname)) {
     			jobs.deleteDesign(jarname);
     		}
@@ -105,6 +106,7 @@ public class JobsTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		if(jobs.existDesign(jarname)) {
     			jobs.deleteDesign(jarname);
     		}
@@ -142,6 +144,7 @@ public class JobsTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		if(jobs.existDesign(jarname)) {
     			EditDesignView editor = jobs.editDesign(jarname);
     			if(editor.execute() == null) {
@@ -193,6 +196,7 @@ public class JobsTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectCompiledTab();
+    		jobs.searchCompiled(jarname);
     		if(jobs.existJob(jarname)) {
     			jobs.selectOption(dagname, 5);
     			new DependenciesView(driver);

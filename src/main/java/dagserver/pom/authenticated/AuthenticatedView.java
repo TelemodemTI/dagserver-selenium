@@ -42,7 +42,7 @@ public class AuthenticatedView {
 	}
 	public JobsView goToJobs() {
 		WebDriverWait wait = new WebDriverWait(driver,3);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(jobsLink));
+		wait.until(ExpectedConditions.elementToBeClickable(jobsLink));
 		driver.findElement(jobsLink).click();
 		return new JobsView(driver);
 	}

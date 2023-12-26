@@ -214,4 +214,20 @@ public class JobsView {
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("importUncompiledModal")));
         return new ImportJarDialog(driver);
 	}
+	public void searchCompiled(String jarname) throws InterruptedException {
+		WebDriverWait wait2 = new WebDriverWait(driver,3);
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"dataTables-jobs_filter\"]/label/input")));
+		driver.findElement(By.xpath("//*[@id=\"dataTables-jobs_filter\"]/label/input")).clear();
+		driver.findElement(By.xpath("//*[@id=\"dataTables-jobs_filter\"]/label/input")).sendKeys(jarname);
+		Thread.sleep(3000);
+		
+	}
+	public void searchUncompiled(String jarname) throws InterruptedException {
+		WebDriverWait wait2 = new WebDriverWait(driver,3);
+        wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"dataTables-uncompiledjobs_filter\"]/label/input")));
+		driver.findElement(By.xpath("//*[@id=\"dataTables-uncompiledjobs_filter\"]/label/input")).clear();
+		driver.findElement(By.xpath("//*[@id=\"dataTables-uncompiledjobs_filter\"]/label/input")).sendKeys(jarname);
+		Thread.sleep(3000);
+		
+	}
 }

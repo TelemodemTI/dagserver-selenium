@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="http_operator_POST_suite">
+<suite name="http_operator_DELETE_suite">
    
     <test name="createDagDesignWithStepTest">
     	<parameter name="chromeDriverUrl" value="http://localhost:4444/wd/hub"/>

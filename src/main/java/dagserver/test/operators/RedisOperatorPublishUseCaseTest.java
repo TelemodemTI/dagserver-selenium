@@ -27,6 +27,7 @@ public class RedisOperatorPublishUseCaseTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		if(jobs.existDesign(jarname)) {
     			jobs.deleteDesign(jarname);
     		}
