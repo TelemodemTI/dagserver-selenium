@@ -43,6 +43,7 @@ public class JdbcOperatorGetParamUseCaseTest extends BaseTest {
     		params.sendScript(cmd);
     		params.save();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		EditDesignView editor2 = jobs.editDesign(jarname);
 			editor2.selectDag(dagname);
 			editor2.addStep(dagname,step2,"main.cl.dagserver.infra.adapters.operators.JdbcOperator");

@@ -41,6 +41,7 @@ public class HttpOperatorPOSTUseCaseTest extends BaseTest {
     		params.sendScript(cmd);
     		params.save();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		EditDesignView editor2 = jobs.editDesign(jarname);
 			editor2.selectDag(dagname);
     		
@@ -76,6 +77,7 @@ public class HttpOperatorPOSTUseCaseTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		if(jobs.existDesign(jarname)) {
     			EditDesignView editor = jobs.editDesign(jarname);
     			editor.selectDag(dagname);

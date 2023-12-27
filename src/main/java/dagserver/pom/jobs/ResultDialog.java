@@ -29,7 +29,7 @@ public class ResultDialog {
 
 	public String getOutputXcom(String step1) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver,5);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\\\"accordion-step1\\\"]/div/div[1]/h4/a")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")));
 		driver.findElement(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")).click();
 		WebDriverWait wait2 = new WebDriverWait(driver,3);
         wait2.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"accordion-step1\"]/div/div[1]/h4/a")));

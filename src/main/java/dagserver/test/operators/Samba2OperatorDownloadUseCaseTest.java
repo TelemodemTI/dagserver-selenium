@@ -76,6 +76,7 @@ public class Samba2OperatorDownloadUseCaseTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		if(jobs.existDesign(jarname)) {
     			EditDesignView editor = jobs.editDesign(jarname);
     			editor.selectDag(dagname);

@@ -29,6 +29,7 @@ public class AdminTest extends BaseTest {
     			credentials.deleteUser(newusername);
     			credentials = autenticado.goToCredentials();
     		}
+    		this.writeEvidence(context,"createUser","CREDENTIALS",By.xpath("/html/body"));
     		NewUserDialog newuserDialog = credentials.addUser();
     		newuserDialog.saveNewUser(newusername, newpwd, newaccountType);
     		credentials = autenticado.goToCredentials();
@@ -54,10 +55,12 @@ public class AdminTest extends BaseTest {
     			credentials.deleteUser(newusername);
     			credentials = autenticado.goToCredentials();
     		}
+    		this.writeEvidence(context,"deleteUser","CREDENTIALS",By.xpath("/html/body"));
     		NewUserDialog newuserDialog = credentials.addUser();
     		newuserDialog.saveNewUser(newusername, newpwd, newaccountType);
     		credentials = autenticado.goToCredentials();
     		if(credentials.existCredential(newusername)) {
+    			this.writeEvidence(context,"deleteUser","BEFORE DELETE",By.xpath("/html/body"));
     			credentials.deleteUser(newusername);
     			credentials = autenticado.goToCredentials();
     			this.writeEvidence(context,"deleteUser","OK",By.xpath("/html/body"));

@@ -29,7 +29,7 @@
     	<parameter name="url" value="http://192.168.1.27:8081/"/>   
     	<parameter name="username" value="dagserver"/>  
     	<parameter name="pwd" value="dagserver"/>   
-    	<parameter name="jarname" value="redis_operator_exec.jar"/>  
+    	<parameter name="jarname" value="redis_operator_save.jar"/>  
     	<parameter name="dagname" value="TEST_DAG"/>
     	<parameter name="step1" value="step1"/> 
         <classes>

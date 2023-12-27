@@ -1,11 +1,12 @@
 <suite name="allSuites">
   <suite-files>
+    <!-- 
     <suite-file path="suites/login_suite.xml" />
     <suite-file path="suites/admin_suite.xml" />
     <suite-file path="suites/props_suite.xml" />
     <suite-file path="suites/channels_suite.xml" />
     <suite-file path="suites/jobs_suite.xml" />
-    <!-- 
+    -->
     <suite-file path="suites/operators/cmd_operator_exec_suite.xml" />
     <suite-file path="suites/operators/file_operator_read_suite.xml" />
     <suite-file path="suites/operators/file_operator_write_suite.xml" />
@@ -17,6 +18,7 @@
     <suite-file path="suites/operators/java_operator_exec_suite.xml" />
     <suite-file path="suites/operators/testng_operator_exec_suite.xml" />
     
+    <!-- 
     <suite-file path="suites/operators/mail_operator_exec_suite.xml" />
     <suite-file path="suites/operators/mail_operator_exec_body_suite.xml" />
     <suite-file path="suites/operators/samba2_operator_exec_suite.xml" />

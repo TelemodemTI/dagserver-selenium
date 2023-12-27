@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="file_operator_read_suite">
+<suite name="file_operator_write_suite">
     
     
     <test name="createDagDesignWithStepTest">

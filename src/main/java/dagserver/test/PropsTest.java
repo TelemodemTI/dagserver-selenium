@@ -34,6 +34,7 @@ public class PropsTest extends BaseTest {
 	    		AuthenticatedView autenticado = new AuthenticatedView(driver);
 	    		PropertiesView view = autenticado.goToProps();
 	    		view.search(propkey);
+	    		this.writeEvidence(context,"propsTest","BUSCAR PROP EXISTENTE",By.xpath("/html/body"));
 	    		if(view.existProp(propkey)) {
 	    			view.deleteProp(propkey);
 	    			view = autenticado.goToProps();
@@ -42,15 +43,18 @@ public class PropsTest extends BaseTest {
 	    		newpropForm.saveNewProp(propkey, "descr", propgroup, propval);
 	    		view = autenticado.goToProps();
 	    		view.search(propkey);
+	    		this.writeEvidence(context,"propsTest","BUSCAR PROPPARA ELIMINAR",By.xpath("/html/body"));
 	    		if(view.existProp(propkey)) {
 	    			view.showProp(propkey);
 	    			var model = view.editProp(propkey);
 	    			model.saveNewValue(propkey, "editrado", propgroup, propval);
 	    			view = autenticado.goToProps();
 	    			view.search(propkey);
+	    			this.writeEvidence(context,"propsTest","PREVIO A EXPORT",By.xpath("/html/body"));
 	    			view.exportSelected();
 	    			view.search("");
 	    			view.deleteProp(propkey);
+	    			this.writeEvidence(context,"propsTest","DELETE PROP",By.xpath("/html/body"));
 	    			view = autenticado.goToProps();
 	    			var modalimport = view.importProp();
 	    			modalimport.importNewProp(uploadFileReal);

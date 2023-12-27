@@ -41,10 +41,10 @@ public class HttpOperatorDELETEUseCaseTest extends BaseTest {
     		params.sendScript(cmd);
     		params.save();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		EditDesignView editor2 = jobs.editDesign(jarname);
 			editor2.selectDag(dagname);
-    		
-    		
+    		    		
 			editor2.addStep(dagname,step2,"main.cl.dagserver.infra.adapters.operators.HttpOperator");  
     		params = newform.selectStage(step2);
     		var timeoutr = context.getCurrentXmlTest().getParameter("timeout");
@@ -76,6 +76,7 @@ public class HttpOperatorDELETEUseCaseTest extends BaseTest {
     		AuthenticatedView autenticado = new AuthenticatedView(driver);
     		JobsView jobs = autenticado.goToJobs();
     		jobs.selectDesigndTab();
+    		jobs.searchUncompiled(jarname);
     		if(jobs.existDesign(jarname)) {
     			EditDesignView editor = jobs.editDesign(jarname);
     			editor.selectDag(dagname);
